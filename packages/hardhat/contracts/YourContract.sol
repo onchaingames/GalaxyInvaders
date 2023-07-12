@@ -80,6 +80,10 @@ contract YourContract {
 		require(success, "Failed to send Ether");
 	}
 
+	function another(address me) public {
+
+	}
+
 	/**
 	 * Function that allows the contract to receive ETH
 	 */
