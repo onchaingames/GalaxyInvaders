@@ -4,6 +4,7 @@ import { MetaHeader } from "~~/components/MetaHeader";
 import PlanetGrid from '~~/components/universe/PlanetGrid';
 import PlanetSurface from '~~/components/universe/PlanetSurface';
 import ShipStats from '~~/components/universe/ShipStats';
+import TargetingSystem from '~~/components/universe/TargetingSystem';
 
 const stats = [
   { name: 'Homeworld (LP Type)', value: 'FraxEth/Eth', withdraw: true },
@@ -12,10 +13,9 @@ const stats = [
   { name: 'Victory Points (Gov tokens)', value: 4330, withdraw: true },
 ];
 
-
-
 const ExampleUI: NextPage = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
+  const [selectedTarget, setSelectedTarget] = useState(null);
 
   const handlePlanetClick = (planet: SetStateAction<null>) => {
     setSelectedPlanet(planet);
@@ -24,6 +24,10 @@ const ExampleUI: NextPage = () => {
 
   const handleBackClick = () => {
     setSelectedPlanet(null);
+  };
+
+  const handleTargetSelect = (target: any) => {
+    setSelectedTarget(target);
   };
 
   return (
@@ -37,8 +41,9 @@ const ExampleUI: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </MetaHeader>
       {selectedPlanet ? (
-        <div className="planets mb-4 bg-black">
-          <PlanetSurface planet={selectedPlanet} onBackClick={handleBackClick} />
+        <div className="planets mb-4 bg-black flex">
+          <PlanetSurface planet={selectedPlanet} onBackClick={handleBackClick} onTargetSelect={handleTargetSelect} />
+          <TargetingSystem target={selectedTarget} />
         </div>
       ) : (
         <div className="planets mb-40 bg-black">
