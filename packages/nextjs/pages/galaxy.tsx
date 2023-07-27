@@ -7,13 +7,13 @@ import ShipStats from '~~/components/universe/ShipStats';
 import TargetingSystem from '~~/components/universe/TargetingSystem';
 
 const stats = [
-  { name: 'Homeworld (LP Type)', value: 'FraxEth/Eth', withdraw: true },
+  { name: 'Homeworld (LP Type)', value: 'FraxEth/Eth', deposit:true, withdraw: true },
   { name: 'Ammo (CRV)', value: 6, deposit: true, withdraw: true },
   { name: 'Experience (veCRV)', value: '600' },
   { name: 'Victory Points (Gov tokens)', value: 4330, withdraw: true },
 ];
 
-const ExampleUI: NextPage = () => {
+const galaxy: NextPage = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [selectedTarget, setSelectedTarget] = useState(null);
 
@@ -24,6 +24,7 @@ const ExampleUI: NextPage = () => {
 
   const handleBackClick = () => {
     setSelectedPlanet(null);
+    setSelectedTarget(null); // Clear the selected target when the "Back" button is clicked
   };
 
   const handleTargetSelect = (target: any) => {
@@ -41,20 +42,33 @@ const ExampleUI: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </MetaHeader>
       {selectedPlanet ? (
-        <div className="planets mb-4 bg-black flex">
+        <div className="planets mt-10 mb-4 bg-black grid grid-cols-3 items-baseline place-content-center gap-10">
+          
+          <div className="planetTitle col-start-2 text-center ">
+            <h2>{selectedPlanet.name}</h2>
+            <p>{selectedPlanet.desc}</p>
+          </div>
+          <div className="backButton col-start-1 justify-self-end">
+            <button 
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={handleBackClick}
+              >
+              Back
+            </button>
+          </div>
           <PlanetSurface planet={selectedPlanet} onBackClick={handleBackClick} onTargetSelect={handleTargetSelect} />
           <TargetingSystem target={selectedTarget} />
         </div>
       ) : (
-        <div className="planets mb-40 bg-black">
+        <div className="planetGrid mb-40 mt-40 ">
           <PlanetGrid onPlanetClick={handlePlanetClick} />
         </div>
       )}
-      <div className="planets mb-40 bg-black">
+      <div className="shipStats mb-40 ">
         <ShipStats stats={stats} />
       </div>
     </>
   );
 };
 
-export default ExampleUI;
+export default galaxy;
