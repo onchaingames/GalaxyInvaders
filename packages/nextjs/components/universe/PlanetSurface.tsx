@@ -25,7 +25,7 @@ return (
             onClick={() => handleCellClick(cell, i, j)}
           >
             {cell.type === 'rocket' && '🚀'}
-            {cell.type === 'alien' && '👽'}
+            {cell.type === 'alien' && '👾'}
           </div>
         ))}
       </div>

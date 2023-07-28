@@ -15,8 +15,8 @@ const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT
 
 export const MetaHeader = ({
   title = "Galaxy Invaders",
-  description = "Save the Galaxy and get rewarded",
-  image = "ship3.png",
+  description = "Save the Galaxy!",
+  image = "👾",
   twitterCard = "summary_large_image",
   children,
 }: MetaHeaderProps) => {
@@ -45,7 +45,7 @@ export const MetaHeader = ({
         </>
       )}
       {twitterCard && <meta name="twitter:card" content={twitterCard} />}
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="monster.webp" />
       {children}
     </Head>
   );

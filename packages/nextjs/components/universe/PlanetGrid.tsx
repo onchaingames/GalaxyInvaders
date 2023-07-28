@@ -33,7 +33,7 @@ const generateGrid = () => {
           experience: Math.floor(Math.random() * 1000),
           victoryPoints: Math.floor(Math.random() * 5000),
         });
-      } else if (rand < 0.6) {
+      } else if (rand < 0.35) {
         row.push({
           type: 'alien',
           ammoCost: Math.floor(Math.random() * 10),

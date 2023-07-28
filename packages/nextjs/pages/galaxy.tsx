@@ -60,7 +60,7 @@ const galaxy: NextPage = () => {
           <TargetingSystem target={selectedTarget} />
         </div>
       ) : (
-        <div className="planetGrid mb-40 mt-40 ">
+        <div className="planetGrid mb-40 mt-20 ">
           <PlanetGrid onPlanetClick={handlePlanetClick} />
         </div>
       )}

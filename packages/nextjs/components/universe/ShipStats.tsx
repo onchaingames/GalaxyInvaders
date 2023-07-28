@@ -22,8 +22,8 @@ const ShipStats: React.FC<ShipStatsProps> = ({ stats }) => (
           <tr key={index} className="">
             <td className="border px-4 border-slate-700">{stat.name}</td>
             <td className="border px-4 border-slate-700">{stat.value}</td>
-            <td className="border px-4 border-slate-700">{stat.deposit ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Deposit</button> : ''}</td>
-            <td className="border py-2 px-4 border-slate-700">{stat.withdraw ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Withdraw</button> : ''}</td>
+            <td className="border px-4 border-slate-700">{stat.deposit ? <button className="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Deposit</button> : ''}</td>
+            <td className="border py-2 px-4 border-slate-700">{stat.withdraw ? <button className="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Withdraw</button> : ''}</td>
           </tr>
         ))}
       </tbody>
