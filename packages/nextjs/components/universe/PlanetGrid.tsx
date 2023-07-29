@@ -50,7 +50,7 @@ const generateGrid = () => {
 };
 
 
-const planets = [
+export const planets = [
   { name: 'TriCryptoUSDC', color: 'red', desc: 'CRV APR: 15%', grid: generateGrid() },
   { name: 'CrvUSD/USDC', color: 'yellow', desc: 'CRV APR: 7%', grid: generateGrid() },
   { name: 'FraxEth/Eth', color: 'blue', desc: 'CRV APR: 4%', grid: generateGrid() },
