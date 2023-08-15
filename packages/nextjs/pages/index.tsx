@@ -14,12 +14,12 @@ const Home: NextPage = () => {
             <span className="block text-green-600 text-6xl font-bold">Galaxy Invaders</span>
           </h1>
           <p className="text-center italic">
-             A simple game built on top of the Curve protocol 
+          Battle to save the Galaxy
           </p>
           <ul className="list-none mt-10">
-            <li className="mb-2 font-bold">💰 Stake LP to mint a spaceship NFT on a LP Planet and earn Boosted CRV rewards</li> 
-            <li className="mb-2 font-bold">👾 Lock up CRV by using it as ammo to blast aliens and earn Bounty tokens and Experience Points</li>
-            <li className="mb-2 font-bold">🔫 Fly to other LP Planets and attack players with lower Experience Points to steal their CRV rewards</li>
+            <li className="mb-2 font-bold">💰 Stake Eth to Mint a spaceship NFT on a LP Planet and earn AMMO rewards</li> 
+            <li className="mb-2 font-bold">👾 Fire AMMO to save the Galaxy from aliens and earn GALX Tokens and Experience</li>
+            <li className="mb-2 font-bold">🔫 Fly to other LP Planets and steal AMMO from less Experienced pilots</li>
           </ul>
         </div>
 

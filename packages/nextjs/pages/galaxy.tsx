@@ -9,10 +9,10 @@ import  planets  from '~~/components/universe/PlanetGrid';
 
 
 const stats = [
-  { name: 'Homeworld', value: 'FraxEth/Eth', deposit:true, withdraw: true },
-  { name: 'Ammo (CRV)', value: 6, deposit: true, withdraw: true },
+  { name: 'Homeworld', value: 'FRAX', deposit:true, withdraw: true },
+  { name: 'AMMO', value: 6, deposit: true, withdraw: true },
   { name: 'Experience', value: '600' },
-  { name: 'Bounty Points', value: 4330, withdraw: true },
+  { name: 'GALX', value: 4330, withdraw: true },
 ];
 
 // Define the Planet type
