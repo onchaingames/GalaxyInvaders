@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { generateGrid } from './gridUtils'; // Adjust the path accordingly
+
 
 function PlanetSurface({ planet, onBackClick, onTargetSelect }) {
   const [selectedTarget, setSelectedTarget] = useState(null);
@@ -13,7 +15,7 @@ function PlanetSurface({ planet, onBackClick, onTargetSelect }) {
   }, [planet]);
 
   const handleCellClick = (cell, i, j) => {
-    if (cell !== 'empty') {
+    if (cell.type !== 'blank') {
       setSelectedTarget({ ...cell, i, j });
       onTargetSelect({ ...cell, i, j });
     }
@@ -24,19 +26,20 @@ function PlanetSurface({ planet, onBackClick, onTargetSelect }) {
       {grid.map((row, i) => (
         <div key={i} className="flex flex-row justify-center">
           {row.map((cell, j) => (
-            <div 
+            <button 
               key={`${i}-${j}`} 
-              className={`min-w-[2rem] max-w-[2rem] min-h-[2rem] max-h-[2rem] cursor-pointer hover:bg-blue-700 items-center justify-center ${selectedTarget && selectedTarget.i === i && selectedTarget.j === j ? 'bg-blue-500' : ''}`}
+              className={`min-w-[2rem] max-w-[2rem] min-h-[2rem] max-h-[2rem] cursor-pointer hover:bg-blue-700 flex items-center justify-center border-none outline-none focus:outline-none ${selectedTarget && selectedTarget.i === i && selectedTarget.j === j ? 'bg-blue-500' : ''}`}
               onClick={() => handleCellClick(cell, i, j)}
             >
               {cell.type === 'rocket' && '🚀'}
               {cell.type === 'alien' && '👾'}
-            </div>
+            </button>
           ))}
         </div>
       ))}
     </div>
   );
 }
+  
 
 export default PlanetSurface;

@@ -20,29 +20,42 @@ const ShipStats: React.FC<ShipStatsProps> = ({ stats }) => {
 
   return (
     <div >
-      <h2 className="text-2xl font-bold my-4 hidden">Ship Stats</h2>
-      <table className="table-auto mt-5 border border-slate-500 border-spacing-10 space-x-4">
+      <div className=" bg-gray-800 rounded p-2 ">
+      <h2 className="text-center text-white text-2xl">Ship Stats</h2>
+      <table className="table-auto space-x-4">
         <tbody>
           {stats.map((stat, index) => (
             <>
               <tr key={index}>
-                <td className="border px-4 border-slate-700">{stat.name}</td>
-                <td className="border px-4 border-slate-700">{stat.value}</td>
-              </tr>
-              <tr>
-                <td className="">{stat.deposit ? <button className="border-slate-700 bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded" onClick={handleButtonClick}>Deposit</button> : ''}</td>
-                <td className="">{stat.withdraw ? <button className="border-slate-700 bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded" onClick={handleButtonClick}>Withdraw</button> : ''}</td>
+                <td className="mx-4">{stat.name}</td>
+                <td className="text-white mx-4 p-2">{stat.value}</td>
               </tr>
             </>
           ))}
+            <tr>
+              <td className="mx-4 p-2">
+                <button onClick={handleButtonClick} className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded bottom-0">
+                 Deposit
+                </button>
+              </td>
+              <td>
+                <button onClick={handleButtonClick} className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded bottom-0">
+                  Withdraw
+                </button>
+              </td>
+            </tr>
         </tbody>
       </table>
-
+      </div>
       <dialog id="my_modal" className={`modal flex items-center justify-center bg-transparent ${showModal ? 'modal-open' : ''}`} style={{padding: 0, border: 'none'}}>
           <form method="dialog" className="modal-box bg-gray-800 p-4 rounded-lg flex flex-col items-center" style={{width: 'auto', maxWidth: '90vw'}}>
               <div className="flex justify-between items-center w-full mb-4">
                   <label htmlFor="amount" className="text-white font-bold">Amount</label>
                   <input type="text" id="amount" name="amount" className="border rounded px-2 py-1 w-20" />
+              </div>
+              <div className="flex justify-between items-center w-full mb-4">
+                  <label htmlFor="amount" className="text-white font-bold">Type</label>
+                  <input type="text" defaultValue="Ammo" id="amount" name="amount" className="border rounded px-2 py-1 w-20" />
               </div>
               <div className="flex justify-between items-center w-full">
                   <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onClick={handleButtonClick}>Cancel</button>

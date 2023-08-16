@@ -1,24 +1,14 @@
 import React from 'react';
 
 function TargetingSystem({ target }) {
-  if (!target) {
-    return (
-      <div className="targeting-system">
-        <h1 className="ml-10 block text-2xl">Targeting System</h1>
-        <p>No target selected</p>
-        <button className="bg-gray-500 text-white font-bold py-2 px-4 rounded bottom-0" disabled>
-          Attack
-        </button>
-      </div>
-    );
-  }
 
-  const isShip = target.type === 'rocket';
-  const isAlien = target.type === 'alien';
+  const isShip = target && target.type === 'rocket';
+  const isAlien =target &&  target.type === 'alien';
 
   return (
-    <div className="">
-      <h1 className="ml-10 block text-2xl">Targeting System</h1>
+      <div className=" bg-gray-800 rounded p-2 ">
+      <h1 className="text-white text-center text-2xl">Targeting System</h1>
+      <div className=' px-1 mb-1'>
       {isAlien && (
         <>
           <p>Alien</p>
@@ -32,11 +22,11 @@ function TargetingSystem({ target }) {
           <p>Homeworld: {target.homeworld}</p>
           <p>Ammo: {target.ammo}</p>
           <p>Experience: {target.experience}</p>
-          <p>GALX: {target.victoryPoints}</p>
         </>
       )}
+      </div>
       {(isAlien || isShip) && (
-        <div className="absolute bottom-0">
+        <div className="">
           <div className="flex justify-between items-end w-full mb-4">
           <div className="border rounded flex justify-between items-end w-full">
             <div className="ml-2" >

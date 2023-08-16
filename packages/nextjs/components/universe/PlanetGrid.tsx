@@ -1,93 +1,61 @@
-import React from 'react';
-/*
-// Generate a 16x16 grid for each planet
-const generateGrid = () => {
-  const grid = [];
-  for (let i = 0; i < 16; i++) {
-    const row = [];
-    for (let j = 0; j < 16; j++) {
-      const rand = Math.random();
-      if (rand < 0.3) row.push('rocket');
-      else if (rand < 0.35) row.push('alien');
-      else row.push('empty');
-    }
-    grid.push(row);
-  }
-  return grid;
-};
-OLD*/
+import React, { useState, useEffect } from 'react';
+import Blockies from "react-blockies";
+import { generateGrid } from './gridUtils'; // Adjust the path accordingly
 
-  const homeworlds = ['LIDO', 'ROCKET', 'FRAX', 'Invader L1', 'Invader L2', 'Invader L3'];
-  
-// Generate a 16x16 grid for each planet
-const generateGrid = () => {
-  const grid = [];
-  for (let i = 0; i < 16; i++) {
-    const row = [];
-    for (let j = 0; j < 16; j++) {
-      const rand = Math.random();
-      if (rand < 0.3) {
-        row.push({
-          type: 'rocket',
-          homeworld: homeworlds[Math.floor(Math.random() * homeworlds.length)],
-          ammo: Math.floor(Math.random() * 100),
-          experience: Math.floor(Math.random() * 1000),
-          victoryPoints: Math.floor(Math.random() * 5000),
-        });
-      } else if (rand < 0.35) {
-        row.push({
-          type: 'alien',
-          ammoCost: Math.floor(Math.random() * 10),
-          victoryPoints: Math.floor(Math.random() * 100),
-          age: Math.floor(Math.random() * 10),
-        });
-      } else {
-        row.push({
-          type: 'blank',
-          ammoCost: Math.floor(Math.random() * 10),
-          victoryPoints: Math.floor(Math.random() * 100),
-          age: Math.floor(Math.random() * 10),
-        });
-      }
-    }
-    grid.push(row);
-  }
-  return grid;
+
+const homeworlds = ['Lido', 'Rocket', 'Frax' ];
+
+const stakingAddresses = {
+  'Lido': 'Address',
+  'Rocket': 'Address',
+  'Frax': 'Address',
 };
+
 
 
 export const planets = [
-  { name: homeworlds[0], color: 'red', desc: 'APR: 15%', grid: generateGrid() },
-  { name: homeworlds[1], color: 'yellow', desc: 'APR: 23%', grid: generateGrid() },
-  { name: homeworlds[2], color: 'blue', desc: 'APR: 35%', grid: generateGrid() },
-  { name: homeworlds[3], color: 'orange', desc: 'Weakest Alien Planet', grid: generateGrid() },
-  { name: homeworlds[4], color: 'green', desc: 'Midrange Alien Planet', grid: generateGrid() },
-  { name: homeworlds[5], color: 'purple', desc: 'Strongest Alien Planet', grid: generateGrid() },
+  { name: homeworlds[0], color: 'red', desc: 'APR: 15%' },
+  { name: homeworlds[1], color: 'yellow', desc: 'APR: 23%' },
+  { name: homeworlds[2], color: 'blue', desc: 'APR: 35%' },
 ];
 
 function Planet({ planet, onClick }) {
+  const totalShips = planet.grid ? planet.grid.flat().filter(cell => cell.type === 'rocket').length : 0;
+  const totalAliens = planet.grid ? planet.grid.flat().filter(cell => cell.type === 'alien').length : 0;
+
   return (
-    <div className="w-32 h-32 m-4 relative">
+    <div className="w-32 h-auto m-4 relative bg-gray-800 rounded-lg flex flex-col"> {/* Changed h-32 to h-auto and added flex flex-col */}
       <div 
-        className={`w-full h-full rounded-full cursor-pointer hover:opacity-75`}
-        style={{
-          backgroundImage: `radial-gradient(circle at 30% 30%, ${planet.color}, black)`
-        }}
+        className={`w-full h-32 rounded-full cursor-pointer hover:opacity-75 flex items-center justify-center`} // Kept h-32 here for the Blockies container
         onClick={() => onClick(planet)}
       >
+        <Blockies className="rounded-full" seed={planet.name.toLowerCase()+"sfds"} scale={10} />
       </div>
-      <div className="text-center mt-2">
-        <h2>{planet.name}</h2>
+      <div className="text-center mt-2 flex-grow"> {/* Added flex-grow */}
+        <h2>Planet {planet.name}</h2>
         <p>{planet.desc}</p>
+        <p>Total Ships: {totalShips}</p>
+        <p>Total Aliens: {totalAliens}</p>
+        <p>{stakingAddresses[planet.name]}</p>
       </div>
     </div>
   );
 }
 
 function PlanetGrid({ onPlanetClick }) {
+  const [planetData, setPlanetData] = useState(planets);
+
+  useEffect(() => {
+    const updatedPlanets = planetData.map(planet => ({
+      ...planet,
+      grid: generateGrid()
+    }));
+    setPlanetData(updatedPlanets);
+  }, []);
+
   return (
     <div className="flex flex-wrap justify-center">
-      {planets.map((planet, index) => (
+      {planetData.map((planet, index) => (
         <Planet 
           key={index} 
           planet={planet} 
@@ -99,3 +67,4 @@ function PlanetGrid({ onPlanetClick }) {
 }
 
 export default PlanetGrid;
+
