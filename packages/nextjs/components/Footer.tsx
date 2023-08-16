@@ -28,7 +28,7 @@ export const Footer = () => {
           <SwitchTheme className="pointer-events-auto" />
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full hidden">
         <ul className="menu menu-horizontal w-full">
           <div className="flex justify-center items-center gap-2 text-sm w-full">
             <div>
