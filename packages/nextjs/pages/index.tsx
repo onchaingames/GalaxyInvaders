@@ -17,9 +17,9 @@ const Home: NextPage = () => {
           Battle to save the Galaxy
           </p>
           <ul className="list-none mt-10">
-            <li className="mb-2 font-bold">💰 Stake Eth to Mint a spaceship NFT on a LP Planet and earn AMMO rewards</li> 
-            <li className="mb-2 font-bold">👾 Fire AMMO to save the Galaxy from aliens and earn GALX Tokens and Experience</li>
-            <li className="mb-2 font-bold">🔫 Fly to other LP Planets and steal AMMO from less Experienced pilots</li>
+            <li className="mb-2 font-bold">💰 Stake Eth to Mint a spaceship NFT and earn up to 35% 🖊Ammo rewards</li> 
+            <li className="mb-2 font-bold">👾 Destroy aliens and earn 👾Galaxy Tokens and power up your Ship</li>
+            <li className="mb-2 font-bold">🔫 Fly to other LP Planets and steal 🖊Ammo from other Ships</li>
           </ul>
         </div>
 

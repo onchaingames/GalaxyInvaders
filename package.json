@@ -38,6 +38,8 @@
   },
   "dependencies": {
     "daisyui": "^3.5.0",
+    "esbuild": "^0.19.2",
+    "node-gyp": "^9.4.0",
     "viem": "^1.2.13"
   }
 }

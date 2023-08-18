@@ -1,6 +1,6 @@
 // gridUtils.js
 
-const homeworlds = ['Lido', 'Rocket', 'Frax', 'Invader L1', 'Invader L2', 'Invader L3'];
+const homeworlds = ['Lido', 'Rocket', 'Frax'];
 
 export const generateGrid = () => {
   const grid = [];
