@@ -15,12 +15,12 @@ interface ShipStatsProps {
 const ShipStats: React.FC<ShipStatsProps> = () => {
   const [showModal, setShowModal] = useState(false);
   const stats = [
-    { name: 'Homeworld', value: 'Frax', tooltip: 'Your home planet. You cannot be attacked here for your first hour.'},
-    { name: 'On World', value: 'Lido', tooltip: 'The current world you are on.'},
-    { name: '🖊 AMMO', value: '1500 ($569)', tooltip: 'Your ETH generates Ammo at a rate 1000x your ETH APY. Use Ammo to defeat aliens or withdraw to your wallet.'},
+    { name: 'Homeworld', value: 'Frax', tooltip: 'Your home planet'},
+    { name: 'On World', value: 'Lido', tooltip: 'The current world you are on'},
+    { name: '🖊 AMMO', value: '1500 ($569)', tooltip: 'Your ETH stake generates Ammo. Ammo can be used to attack or can be withdrawn'},
     { name: 'APR', value: '35%', tooltip: 'Annual Percentage Rate for Ammo generation.'},
-    { name: 'EXP', value: '600', tooltip: 'Your experience level. Gain experience by defeating aliens and other players.' },
-    { name: '👾 GALX', value: '35 ($3400)', tooltip: 'Galaxy Tokens you can win. Stake to vote on game proposals and earn protocol fees.'},
+    { name: 'EXP', value: '600', tooltip: 'Your experience level. Gain experience by defeating Aliens' },
+    { name: '👾 GALX', value: '35 ($3400)', tooltip: 'Galaxy Tokens you have won by defeating Aliens. Stake in Gov to earn protocol fees.'},
   ];
 
   const handleButtonClick = () => {
