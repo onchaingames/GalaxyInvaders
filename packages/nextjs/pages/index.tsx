@@ -22,19 +22,22 @@ const Home: NextPage = () => {
             <li className="mb-2 font-bold">🔫 Fly to other LP Planets and steal 🖊Ammo from other Ships</li>
           </ul>
         </div>
-
-        <div className="flex-grow bg-base-200 w-full mt-5 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-200 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-                <Link href="/galaxy" passHref className="text-3xl text-green-600 ">
-                  <span className="text-6xl font-bold">👾</span>
-              <p>
-                  Enter the Galaxy
-              </p>
-                </Link>{" "}
-            </div>
-          </div>
+        <div className="flex flex-col bg-base-200 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+            <Link href="/galaxy" passHref className="text-3xl text-green-600 ">
+              <span className="text-6xl font-bold">👾</span>
+          <p>
+              Enter the Galaxy
+          </p>
+            </Link>{" "}
+            <span className="block text-2xl mb-2">Rules of the Galaxy</span>
         </div>
+        <ul className="list-none mt-10">
+          <li className="mb-2 font-bold">Staking - Choose a homeworld and mint a Shace Ship by dpositing Eth and choosing a staking service.</li> 
+          <li className="mb-2 font-bold">Ships from the same homeworld cannot attack each other.
+          As your staked Eth generates rewards, they are wrapped into Ammo Tokens. These Ammo tokens can be used for gameplay or withdrawn and sold or unwrapped back to Eth.Battle</li>
+          <li className="mb-2 font-bold">�Destroy aliens and earn 👾Galaxy Tokens and power up your Ship</li>
+          <li className="mb-2 font-bold">🔫 Fly to other LP Planets and steal 🖊Ammo from other Ships</li>
+        </ul>
       </div>
     </>
   );

@@ -107,11 +107,10 @@ function TargetingSystem({ target }) {
               <div className="text-gray-500 mb-1 mx-1 font-bold text-xs block">max</div>
             </div>
             <button
-              onClick={handleAttack}
               className="ml-2 text-white font-bold py-2 px-2 w-16 h-16 rounded-full flex items-center justify-center transition duration-150 ease-in-out transform active:scale-95 drop-shadow-2xl flex-shrink-0"
               style={{
                 background: 'radial-gradient(circle at center, rgba(0, 0, 0, 0.4), transparent), rgba(255, 0, 0, 1)',
-                border: '4px solid rgba(255, 255, 255, 0.5)',
+                border: '4px solid rgba(255, 255, 255, 1)',
               }}
             >
             </button>
