@@ -29,15 +29,30 @@ const Home: NextPage = () => {
               Enter the Galaxy
           </p>
             </Link>{" "}
-            <span className="block text-2xl mb-2">Rules of the Galaxy</span>
         </div>
-        <ul className="list-none mt-10">
-          <li className="mb-2 font-bold">Staking - Choose a homeworld and mint a Shace Ship by dpositing Eth and choosing a staking service.</li> 
-          <li className="mb-2 font-bold">Ships from the same homeworld cannot attack each other.
-          As your staked Eth generates rewards, they are wrapped into Ammo Tokens. These Ammo tokens can be used for gameplay or withdrawn and sold or unwrapped back to Eth.Battle</li>
-          <li className="mb-2 font-bold">�Destroy aliens and earn 👾Galaxy Tokens and power up your Ship</li>
-          <li className="mb-2 font-bold">🔫 Fly to other LP Planets and steal 🖊Ammo from other Ships</li>
-        </ul>
+        <div className="px-5 mt-10">
+            <h2 className="text-2xl mb-4 font-bold">Rules of the Galaxy</h2>
+            <h3 className="text-xl mb-2">STAKING</h3>
+            <ul className="list-none mb-4">
+                <li>Mint a Space Ship on a homeworld by choosing a staking service and depositing Eth.</li>
+                <li>As your staked Eth generates rewards, they are wrapped into Ammo Tokens.</li>
+                <li>These Ammo tokens can be used for gameplay, withdrawn, or unwrapped back to Eth.</li>
+                <li>You can travel to other planet homeworlds, but beware foreign fighters who may attack you!</li>
+            </ul>
+            <h3 className="text-xl mb-2">ALIEN BATTLE</h3>
+            <ul className="list-none mb-4">
+                <li>Aliens are NPCs that randomly attack the planets. They try and steal ammo.</li>
+                <li>Under their stats is how much Ammo they require to be destroyed as well as how much Exp and Gov Tokens you will win for defeating them.</li>
+                <li>They also have a time limit before they respawn elsewhere. Gaining Exp helps you attack and defend attacks from foreign ships.</li>
+            </ul>
+            <h3 className="text-xl mb-2">SHIP BATTLE</h3>
+            <ul className="list-none">
+                <li>You may attack or be attacked by foreign ships.</li>
+                <li>To attack another ship you fire Ammo at them. If you are successful, you win double the amount that you fired from your target.</li>
+                <li>If you miss, the ammo is distributed out to all stakers on the planet.</li>
+                <li>Your odds of hitting are based on your Exp level relative to theirs.</li>
+            </ul>
+        </div>
       </div>
     </>
   );
