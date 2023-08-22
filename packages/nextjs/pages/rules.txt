@@ -1,0 +1,12 @@
+STAKING
+Mint a Shace Ship on a homeworld by choosing a staking service and depositing Eth. 
+As your staked Eth generates rewards, they are wrapped into Ammo Tokens.
+These Ammo tokens can be used for gameplay, withdrawn, or unwrapped back to Eth.
+You can travel to other planet homeworlds, but beware foreign fighters who may attack you!
+
+ALIEN BATTLE
+Aliens are NPCs that randomly attack the planets. They try and steal ammo.
+Under their stats is how much Ammo they require to be destroyed as as well as how much Exp and Gov Tokens you will win for defeating them. They also have a time limit before they respawn elsewhere. Gaining Exp helps you attack and defend attacks from foriegn ships. 
+
+SHIP BATTLE
+You may attack or be attacked by foriegn ships. To attack another ship you fire Ammo at them. If you are sucessful, you win double the amount that you fired from your target. If you miss, the ammo is distributed out to all stakers on the planet. Your odds of hitting are based on your Exp level relative to theirs.
