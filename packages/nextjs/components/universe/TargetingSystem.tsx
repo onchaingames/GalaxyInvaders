@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
 
-function TargetingSystem({ target }) {
+function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) {
+  const planet = planets[selectedPlanetIndex];
+  const target = planet.grid[selectedTargetIndex.i][selectedTargetIndex.j];
+
   const isShip = target && target.type === 'rocket';
   const isAlien = target && target.type === 'alien';
   const myExperience = 600;
   const targetExperience = target.experience;
 
-  const [flash, setFlash] = useState(false);
-
-  const handleAttack = () => {
-    setFlash(true);
-    setTimeout(() => setFlash(false), 100); // Adjust the duration of the flash here
-  };
-
   const adjustedOdds = (myExperience + 1) / (myExperience + targetExperience + 2) * 100;
 
   return (
     <div className="bg-gray-800 rounded p-2 relative">
-      {flash && (
-        <div
-          className="absolute inset-0 bg-white opacity-50"
-          style={{ zIndex: 1000 }}
-        />
-      )}
       <div className="bg-gray-800 rounded p-2">
         <h1 className="text-white text-center text-2xl">Targeting System</h1>
         <div className="px-1 mb-1">
@@ -109,7 +99,7 @@ function TargetingSystem({ target }) {
             <button
               className="ml-2 text-white font-bold py-2 px-2 w-16 h-16 rounded-full flex items-center justify-center transition duration-150 ease-in-out transform active:scale-95 drop-shadow-2xl flex-shrink-0"
               style={{
-                background: 'radial-gradient(circle at center, rgba(0, 0, 0, 0.4), transparent), rgba(255, 0, 0, 1)',
+                background: 'radial-gradient(circle at center, rgba(0, 0, 0, 0.4), transparent), rgba(0, 255, 0, 1)',
                 border: '4px solid rgba(255, 255, 255, 1)',
               }}
             >

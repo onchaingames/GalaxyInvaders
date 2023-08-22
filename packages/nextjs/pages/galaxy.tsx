@@ -9,12 +9,19 @@ import TargetingSystem from '~~/components/universe/TargetingSystem';
 
 
 const galaxy: NextPage = () => {
-  const [selectedPlanet, setSelectedPlanet] = useState(planets[0]);
-  const [selectedTarget, setSelectedTarget] = useState(null);
 
-  const handlePlanetClick = (planet) => {
-    setSelectedPlanet(planet);
-  };
+  const homeworlds = ['Lido', 'Rocket', 'Frax'];
+
+  const planetsData = [
+    { name: homeworlds[0], color: 'red', apr: '15%' },
+    { name: homeworlds[1], color: 'yellow', apr: '23%' },
+    { name: homeworlds[2], color: 'blue', apr: '35%' },
+  ];
+
+  const [planets, setPlanets] = useState(planetsData);
+  const [selectedPlanetIndex, setSelectedPlanetIndex] = useState(0);
+
+  const [selectedTargetIndex, setSelectedTargetIndex] = useState(0);
 
   return (
     <>
@@ -32,7 +39,7 @@ const galaxy: NextPage = () => {
         `
       }}>
         <div className="planetTitle mb-4 text-center text-white text-2xl">
-          <h2>Planet {selectedPlanet.name}</h2>
+          <h2 className = "text-title">Planet {planets[selectedPlanetIndex].name}</h2>
         </div>
         <div className="flex justify-center items-stretch gap-10 w-full">
           <div className="flex flex-1 justify-end">
@@ -42,14 +49,19 @@ const galaxy: NextPage = () => {
           </div>
           <div className="min-w-[512px] min-h-[512px] planetSurface flex-1 flex justify-center">
             <PlanetSurface 
-              planet={selectedPlanet} 
-              setSelectedTarget={setSelectedTarget} 
-              selectedTarget={selectedTarget}
+              planets={planets} 
+              selectedPlanetIndex={selectedPlanetIndex} 
+              selectedTargetIndex={selectedTargetIndex}
+              setSelectedTargetIndex = {setSelectedTargetIndex}
             />
           </div>
           <div className="flex flex-1 justify-start">
             <div className="bg-gray-800 rounded targeting-system flex-shrink-0 min-w-[275px]"> {/* min-w-[233px] sets the minimum width */}
-              {selectedTarget && <TargetingSystem target={selectedTarget} />}
+              {selectedTargetIndex && <TargetingSystem 
+              planets={planets} 
+              selectedPlanetIndex={selectedPlanetIndex} 
+              selectedTargetIndex={selectedTargetIndex}
+              />}
             </div>
           </div>
         </div>
@@ -59,7 +71,12 @@ const galaxy: NextPage = () => {
       </div>
 
       <div className="mt-4">
-        <PlanetGrid onPlanetClick={handlePlanetClick} />
+        <PlanetGrid 
+        planets = {planets} 
+        setPlanets = {setPlanets}
+        setSelectedPlanetIndex = {setSelectedPlanetIndex} 
+        selectedPlanetIndex = {selectedPlanetIndex} 
+        />
       </div>
     </>
   );
