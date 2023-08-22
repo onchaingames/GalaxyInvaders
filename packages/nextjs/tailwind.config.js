@@ -50,6 +50,7 @@ module.exports = {
           success: "#34EEB6",
           warning: "#FFCF72",
           error: "#FF8863",
+          linker: "#38A169",
 
           "--rounded-btn": "9999rem",
 
@@ -92,6 +93,10 @@ module.exports = {
     extend: {
       fontFamily: {
         "bai-jamjuree": ["Bai Jamjuree", "sans-serif"],
+      },
+      textColor: {
+        'link': '#3B82F6', // Use the same color value here as above
+        'title': 'rgb(22 163 74)', // Use the same color value here as above
       },
       keyframes: {
         grow: {

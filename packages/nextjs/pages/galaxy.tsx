@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from 'react';
 import { MetaHeader } from "~~/components/MetaHeader";
-import PlanetGrid, { planets } from '~~/components/universe/PlanetGrid';
+import PlanetGrid, { planets } from '~~/components/universe/Planets';
 import PlanetSurface from '~~/components/universe/PlanetSurface';
 import ShipStats from '~~/components/universe/ShipStats';
 import TargetingSystem from '~~/components/universe/TargetingSystem';
@@ -14,10 +14,6 @@ const galaxy: NextPage = () => {
 
   const handlePlanetClick = (planet) => {
     setSelectedPlanet(planet);
-  };
-
-  const handleTargetSelect = (target) => {
-    setSelectedTarget(target);
   };
 
   return (
@@ -46,9 +42,9 @@ const galaxy: NextPage = () => {
           </div>
           <div className="min-w-[512px] min-h-[512px] planetSurface flex-1 flex justify-center">
             <PlanetSurface 
-              key={selectedPlanet.name}  // <-- Add this line
               planet={selectedPlanet} 
-              onTargetSelect={handleTargetSelect} 
+              setSelectedTarget={setSelectedTarget} 
+              selectedTarget={selectedTarget}
             />
           </div>
           <div className="flex flex-1 justify-start">

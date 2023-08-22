@@ -10,7 +10,6 @@ function PlanetSurface({ planet, onBackClick, onTargetSelect }) {
     if (planet && planet.grid) {
       setGrid(planet.grid);
     } else {
-      setGrid(generateGrid());
     }
   }, [planet]);
 
