@@ -56,7 +56,8 @@ const Home: NextPage = () => {
             <h3 className="text-xl text-title font-bold mb-2">AMMO TOKEN</h3>
             <ul className="list-disc mb-4">
                 <li>Ammo tokens are utility tokens.</li>
-                <li>Ammo represent players staked ETH yield and can be redeemed for their underlying ETH at anytime. </li>
+                <li>Ammo tokens represents your staked ETH's yield and can be redeemed for their underlying ETH at anytime. </li>
+                <li>Each Ammo represents 1/(1 x 10^7) Eth, making the shot size easier to comprehend vs 0.0000001 Eth  </li>
                 <li>Ammo can be withdrawn and traded or transferred.</li>
                 <li>Ammo tokens that are shot at aliens in the game are burned and their underlying Eth will be added to protocol owned Treasury.
                    This liquidity will be put to use earning yield either by staking 
