@@ -37,6 +37,9 @@ export const Header = () => {
   const navLinks = (
     <>
       <li>
+        <NavLink href="/">
+          Home
+        </NavLink>
         <NavLink href="/galaxy">
           <RocketLaunchIcon className="h-4 w-4" />
           App

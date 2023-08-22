@@ -46,6 +46,8 @@ export const MetaHeader = ({
       )}
       {twitterCard && <meta name="twitter:card" content={twitterCard} />}
       <link rel="icon" type="image/png" sizes="32x32" href="monster.webp" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
       {children}
     </Head>
   );

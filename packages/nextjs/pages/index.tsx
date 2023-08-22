@@ -30,7 +30,7 @@ const Home: NextPage = () => {
             <span className="text-6xl font-bold">👾</span>
             </Link>{" "}
         </div>
-        <div className="mt-10 w-[800px] ">
+        <div className="mt-10 max-w-[800px] px-8 w-full">
             <h2 className="text-title text-3xl mb-4 text-center font-bold">Rules of the Galaxy</h2>
             <h3 className="text-xl font-bold mb-2 text-title">STAKING</h3>
             <ul className="list-disc mb-4">
