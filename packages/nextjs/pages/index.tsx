@@ -82,6 +82,7 @@ const Home: NextPage = () => {
                 <li>Emissions rate of Galaxy tokens will be scheduled to decrease over time with a hard cap, subject to DAO votes.</li>
             </ul>
             <h3 className="text-xl font-bold mb-2 text-title">SHIP NFT</h3>
+        <img src="/assets/ship3.png" alt="Ship" />
             <ul className="list-disc mb-2">
                 <li>Your ship NFT utilizes a new type of smart contract standard (EIP-6551) aka <Link href="https://tokenbound.org/" className="text-link">Token Bound NFTs</Link> that allows the NFT itself to act as a smart wallet and OWN
                   other tokens. This new functionality is leveraged to allow your ship to own its staked ETH, AMMO and GALAXY TOKENS and to interact with the smart contract on your behalf.
