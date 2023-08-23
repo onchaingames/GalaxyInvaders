@@ -32,7 +32,7 @@ const Home: NextPage = () => {
           <Link href="https://twitter.com/EthRoyce" passHref className="mt-10 text-link" target="_blank">
 
             <h2 className="text-2xl mb-4 text-center italic ">
-              Follow @EthRoyce for Updates
+              Coming soon, follow @EthRoyce for Updates
             </h2>
           </Link>
         </div>
