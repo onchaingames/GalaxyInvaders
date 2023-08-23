@@ -14,7 +14,7 @@ function Planet({ planet, onClick, isSelected }) {
   const totalAliens = planet.grid ? planet.grid.flat().filter(cell => cell.type === 'alien').length : 0;
 
   return (
-    <button className={`w-32 h-auto m-4 relative bg-gray-800 rounded-lg flex flex-col`} onClick={() => onClick(planet)}>
+    <button className={`w-32 h-auto m-4 relative bg-gray-800 items-center rounded-lg flex flex-col`} onClick={() => onClick(planet)}>
       <div className={`w-full h-32 rounded-full cursor-pointer hover:opacity-75 flex items-center justify-center relative`}>
         {isSelected && <div className={`absolute w-full h-full rounded-full bg-white shadow-2xl w-[85%] h-[85%]`}></div>}
         <Blockies className="rounded-full z-10 relative" seed={planet.name.toLowerCase()+"sfds"} scale={12} />
@@ -49,8 +49,7 @@ function PlanetGrid({ planets, setPlanets, setSelectedPlanetIndex, selectedPlane
   }
 
   return (
-    <div className="flex flex-wrap justify-center">
-      <div className="flex bg-gray-800 rounded flex-wrap justify-center">
+    <>
         {planets.map((planet, index) => (
           <Planet 
             key={index} 
@@ -59,8 +58,7 @@ function PlanetGrid({ planets, setPlanets, setSelectedPlanetIndex, selectedPlane
             isSelected={index === selectedPlanetIndex}
           />
         ))}
-      </div>
-    </div>
+    </>
   );
 } 
 

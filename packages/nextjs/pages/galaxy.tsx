@@ -29,11 +29,11 @@ const galaxy: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </MetaHeader>
 
-      <div className="planets mt-10 mb-4 bg-black" style={{ backgroundImage: `...` }}>
+      <div className="galaxy mt-10 mb-4 bg-black" style={{ backgroundImage: `...` }}>
         <div className="planetTitle mb-4 text-center text-white text-2xl">
           <h2 className="text-title">Planet {planets[selectedPlanetIndex].name}</h2>
         </div>
-        <div className="flex justify-center items-stretch gap-10 w-full overflow-x-auto">
+        <div className="tri-container flex items-stretch gap-10 w-full overflow-x-auto">
           <div className="flex flex-1 justify-end">
             <div className="bg-gray-800 rounded shipStats flex-shrink-0 min-w-[275px]">
               <ShipStats />
@@ -62,13 +62,15 @@ const galaxy: NextPage = () => {
         <img src="/assets/ship3.png" alt="Ship" />
       </div>
 
-      <div className="mt-4">
-        <PlanetGrid 
-          planets={planets} 
-          setPlanets={setPlanets}
-          setSelectedPlanetIndex={setSelectedPlanetIndex} 
-          selectedPlanetIndex={selectedPlanetIndex} 
-        />
+      <div className="flex mt-4 w-full overflow-x-auto ">
+          <div className="flex bg-gray-800 rounded mx-auto">
+            <PlanetGrid 
+              planets={planets} 
+              setPlanets={setPlanets}
+              setSelectedPlanetIndex={setSelectedPlanetIndex} 
+              selectedPlanetIndex={selectedPlanetIndex} 
+            />
+        </div>
       </div>
     </>
   );

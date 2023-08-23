@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
 
-interface Stat {
-  name: string;
-  value: string | number;
-  tooltip?: string;
-  deposit?: boolean;
-  withdraw?: boolean;
-}
-
-interface ShipStatsProps {
-  stats: Stat[];
-}
-
-const ShipStats: React.FC<ShipStatsProps> = () => {
+function ShipStats() {
   const [showModal, setShowModal] = useState(false);
   const stats = [
     { name: 'Homeworld', value: 'Frax', tooltip: 'Your home planet'},
