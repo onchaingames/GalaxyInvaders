@@ -14,8 +14,8 @@ type MetaHeaderProps = {
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/` : "/";
 
 export const MetaHeader = ({
-  title = "Galaxy Invaders",
-  description = "Save the Galaxy!",
+  title = "Galaxy Invaders - Defi, but funner! Compete for staked Eth Yields",
+  description = "Mint a Spaceship Nft by staking Eth in Lido through GalaxyInvaders. Battle other Spaceships for their yield! Defeat Aliens to earn Gov tokens.",
   image = "twittercard.png",
   twitterCard = "summary_large_image",
   children,
