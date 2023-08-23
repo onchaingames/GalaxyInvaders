@@ -22,13 +22,19 @@ const Home: NextPage = () => {
             <li className="mb-2 font-bold">👾 Destroy Aliens and earn {GOV_TOKEN.emoji}{GOV_TOKEN.title} Gov Tokens which can be staked to earn fees</li>
           </ul>
         </div>
-        <div className="flex flex-col bg-base-200 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+        <div className="flex flex-col  mt-10 text-center rounded-3xl">
           <Link href="/galaxy" passHref className="text-purple-500 ">
-          <h2 className="text-3xl mb-4 text-center font-bold ">
+            <h2 className="text-3xl mb-4 text-center font-bold ">
               Enter the Galaxy
-          </h2>
+            </h2>
             <span className="text-6xl font-bold">👾</span>
-            </Link>{" "}
+          </Link>
+          <Link href="https://twitter.com/EthRoyce" passHref className="mt-10 text-link" target="_blank">
+
+            <h2 className="text-2xl mb-4 text-center italic ">
+              Follow @EthRoyce for Updates
+            </h2>
+          </Link>
         </div>
         <div className="mt-10 max-w-[800px] px-8 w-full">
             <h2 className="text-title text-3xl mb-4 text-center font-bold">Rules of the Galaxy</h2>
@@ -77,7 +83,7 @@ const Home: NextPage = () => {
             Galaxy Token Distribution:
               <ul className="list-disc ml-8 mb-2">
                 <li>10% -{">"} Developers - locked for 1 year.</li>
-                <li>85% -{">"} Players via normal gameplay mechanics.</li hidden>
+                <li>85% -{">"} Players via normal gameplay mechanics.</li>
                 <li> ~5%  -{">"} Protocol owned LP pool.</li>
                 <li>Cap not yet decided.</li>
               </ul>
