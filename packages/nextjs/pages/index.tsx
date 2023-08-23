@@ -77,9 +77,9 @@ const Home: NextPage = () => {
             Galaxy Token Distribution:
               <ul className="list-disc ml-8 mb-2">
                 <li>10% -{">"} Developers - locked for 1 year.</li>
-                <li>85% -{">"} Players via normal gameplay mechanics.</li>
+                <li>85% -{">"} Players via normal gameplay mechanics.</li hidden>
                 <li> ~5%  -{">"} Protocol owned LP pool.</li>
-                <li> 0%  -{">"} VC's & Insiders :)</li>
+                <li>Cap not yet decided.</li>
               </ul>
             <ul className="mb-2">
                 <li>The treasury funds will be used for activities like funding audits, marketing, rewarding community ect.</li>
