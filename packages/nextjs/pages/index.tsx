@@ -7,7 +7,11 @@ const Home: NextPage = () => {
   return (
     <>
       <MetaHeader />
-      <div className="flex items-center flex-col flex-grow pt-10">
+      <div className="flex items-center flex-col flex-grow pt-10" style={{
+        backgroundImage: `
+          url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='starry-pattern' x='0' y='0' width='1' height='1' viewBox='0 0 300 300' fill='%23ffffff'%3E%3Ccircle cx='30' cy='30' r='1' /%3E%3Ccircle cx='150' cy='150' r='2' /%3E%3Ccircle cx='270' cy='30' r='1' /%3E%3Ccircle cx='30' cy='270' r='1' /%3E%3Ccircle cx='270' cy='270' r='1' /%3E%3Ccircle cx='90' cy='120' r='0.5' /%3E%3Ccircle cx='210' cy='60' r='0.5' /%3E%3Ccircle cx='60' cy='210' r='0.5' /%3E%3Ccircle cx='240' cy='180' r='0.5' /%3E%3Ccircle cx='120' cy='240' r='1.5' /%3E%3Ccircle cx='180' cy='90' r='0.7' /%3E%3Ccircle cx='45' cy='165' r='0.6' /%3E%3Ccircle cx='255' cy='105' r='0.8' /%3E%3Ccircle cx='75' cy='75' r='0.9' /%3E%3Ccircle cx='225' cy='225' r='0.4' /%3E%3Ccircle cx='105' cy='45' r='1.2' /%3E%3Ccircle cx='195' cy='255' r='0.3' /%3E%3Ccircle cx='135' cy='195' r='0.6' /%3E%3Ccircle cx='165' cy='15' r='0.7' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23starry-pattern)' /%3E%3C/svg%3E")
+        `
+      }}>
         <div className="px-5">
           <h1 className="text-center mb-10">
             <span className="block text-2xl mb-2">Welcome to</span>
@@ -23,20 +27,22 @@ const Home: NextPage = () => {
           </ul>
         </div>
         <div className="flex flex-col  mt-10 text-center rounded-3xl">
-          <Link href="/galaxy" passHref className="text-purple-500 ">
-            <h2 className="text-3xl mb-4 text-center font-bold ">
-              Enter the Galaxy
+          <Link href="/galaxy" passHref className="text-purple-500 mb-10 ">
+            <h2 className="text-3xl text-center font-bold ">
+              Preview the Galaxy
             </h2>
-            <span className="text-6xl font-bold">👾</span>
           </Link>
-          <Link href="https://twitter.com/EthRoyce" passHref className="mt-10 text-link" target="_blank">
-
-            <h2 className="text-2xl mb-4 text-center italic ">
-              Coming soon, follow @EthRoyce for Updates
+          <Link href="/galaxy" passHref className="text-purple-500 animate-bounce">
+            <span className="text-6xl font-bold "> 👾 </span> {/* Added animate-bounce for animation */}
+          </Link>
+          <Link href="https://twitter.com/EthRoyce" passHref className="mt-5 text-link" target="_blank">
+            <h2 className="text-2xl text-center italic ">
+              <p className="animate-pulse">
+                Follow @EthRoyce for Updates ↗</p>️
             </h2>
           </Link>
         </div>
-        <div className="mt-10 max-w-[800px] px-8 w-full">
+        <div className="mt-5 max-w-[800px] px-8 w-full">
             <h2 className="text-title text-3xl mb-4 text-center font-bold">Rules of the Galaxy</h2>
             <h3 className="text-xl font-bold mb-2 text-title">💰STAKING</h3>
             <ul className="list-disc mb-4">
@@ -65,6 +71,7 @@ const Home: NextPage = () => {
             <ul className="list-disc mb-4">
                 <li>Ammo tokens are utility tokens.</li>
                 <li>Ammo tokens represents your staked ETH's yield and can be redeemed for their underlying ETH at anytime. </li>
+                <li>This 1-way redemption effectively puts a floor on Ammos price, but not a ceiling. Utility may increase the Ammo price and consequently the staking APR.</li>
                 <li>Each Ammo represents 1/(1 x 10^7) Eth, making the shot size easier to comprehend vs 0.0000001 Eth  </li>
                 <li>Ammo can be withdrawn and traded or transferred.</li>
                 <li>Ammo tokens that are shot at aliens in the game are burned and their underlying Eth will be added to protocol owned Treasury.
@@ -95,7 +102,9 @@ const Home: NextPage = () => {
             <ul className="list-disc mb-2">
                 <li>Your ship NFT utilizes a new type of smart contract standard (EIP-6551) aka <Link href="https://tokenbound.org/" className="text-link">Token Bound NFTs </Link>  
                 that allows the NFT itself to act as a smart wallet and OWN other tokens.</li>
-                <li> This new functionality is leveraged to allow your ship to own its staked ETH, AMMO and GALAXY TOKENS and to interact with the smart contract on your behalf.</li>
+                <li>This new functionality is leveraged to allow your ship to own its staked ETH, AMMO and GALAXY TOKENS and to interact with the smart contract on your behalf.</li>
+                <li>You can own multiple ships with distinct attributes in one wallet and easily switch between them and perform bulk operations.</li>
+                <li>Each ship NFT will be a unique dynamically SVG stored on chain.</li>
                 <li>Beware this means that if you sell your ship, you sell all your game inventory and characteristics.</li>
                 <li> As owner of your ship you can always transfer tokens between your ship NFT and your wallet. However traits like Exp remain attributed to your wallet permanently.
                 </li>
