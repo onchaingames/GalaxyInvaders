@@ -23,7 +23,7 @@ const Home: NextPage = () => {
           <ul className="list-disc mt-10">
             <li className="mb-2 font-bold">💰 Stake stEth to Mint a spaceship NFT and earn boosted yield up to <span className = "text-purple-500">35%</span> in {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol}</li> 
             <li className="mb-2 font-bold">🚀 Battle other ships for yield by firing {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol} Tokens entirely on chain</li>
-            <li className="mb-2 font-bold">👾 Destroy Aliens and earn {GOV_TOKEN.emoji}{GOV_TOKEN.title} Gov Tokens which can be staked to earn fees</li>
+            <li className="mb-2 font-bold">👾 Destroy Aliens and earn {GOV_TOKEN.emoji}{GOV_TOKEN.title} Gov Tokens to Power Up your ship</li>
           </ul>
         </div>
         <div className="flex flex-col  mt-10 text-center rounded-3xl">
@@ -46,28 +46,28 @@ const Home: NextPage = () => {
             <h2 className="text-title text-3xl mb-4 text-center font-bold">Rules of the Galaxy</h2>
             <h3 className="text-xl font-bold mb-2 text-title">💰STAKING</h3>
             <ul className="list-disc mb-4">
-                <li>Mint a Space Ship on a homeworld by choosing a staking service and depositing Eth.</li>
+                <li>Mint a Space Ship by staking Eth in a staking service "homeworld" such as Lido, Rocket Pool ect. </li>
+                <li>You Ship spawns on your home planet, but can visit other planets. But your Eth remains in staking in your original service.</li>
                 <li>As your staked Eth generates rewards, they are wrapped into Ammo Tokens.</li>
-                <li>Your Yield can be higher or lower depending on gameplay events, but your stake is never at risk</li>
+                <li>Your stake is never at risk</li>
                 <li>These Ammo tokens can be used for gameplay, withdrawn, or unwrapped back to Eth.</li>
-                <li>You can travel to other planet homeworlds, but beware foreign fighters who may attack you!</li>
-            </ul>
-            <h3 className="text-xl font-bold mb-2 text-title">{GOV_TOKEN.emoji}ALIEN BATTLE</h3>
-            <ul className="list-disc mb-4">
-                <li>Aliens are NPCs that randomly attack the planets. They may try and steal ammo.</li>
-                <li>They differ in their reward value and the Amount of Ammo required to defeat them.</li>
-                <li>Your Exp earned is equal to the amount of Ammo you fired to successfully defeat an alien.</li>
-                <li>Each alien has a lifecyle before they respawn elsewhere. </li>
             </ul>
             <h3 className="text-xl font-bold mb-2 text-title">🚀SHIP BATTLE</h3>
             <ul className="list-disc">
-                <li>You may attack or be attacked by foreign ships.</li>
+                <li>Other ships with the same staking service Homeworld are your allies.</li>
+                <li>Ships with different Homeworlds who travel to the same planet can attack each other there.</li>
                 <li>To attack another ship you fire Ammo at them. If you are successful, you win double the amount that you fired from your target.</li>
                 <li>If you miss, the ammo is distributed out to all stakers on the planet.</li>
                 <li>Your odds of winning the battle are based on your ships relative Exp level.</li>
             </ul>
+            <h3 className="text-xl font-bold mb-2 text-title">{GOV_TOKEN.emoji}ALIEN BATTLE</h3>
+            <ul className="list-disc mb-4">
+                <li>Aliens are NPCs that randomly attack the planets. They may try and steal ammo.</li>
+                <li>By shooting Ammo at Aliens you can earn {GOV_TOKEN.title} Tokens which can Power Up your Ship</li>
+                <li>Each alien has a lifecyle before they respawn elsewhere. </li>
+            </ul>
             <h2 className="text-2xl mt-10 text-center font-bold text-title">Galaxy Tokenomics</h2>
-            <h3 className="text-xl text-title font-bold mb-2">{UTILITY_TOKEN.emoji}AMMO TOKEN</h3>
+            <h3 className="text-xl text-title font-bold mb-2">{UTILITY_TOKEN.emoji}{UTILITY_TOKEN.title.toUpperCase()} TOKEN</h3>
             <ul className="list-disc mb-4">
                 <li>Ammo tokens are utility tokens.</li>
                 <li>Ammo tokens represents your staked ETH's yield and can be redeemed for their underlying ETH at anytime. </li>
@@ -79,10 +79,11 @@ const Home: NextPage = () => {
                   in a LP pool or staking in a validator service such as Rocket Pool.
                 </li>
             </ul>
-            <h3 className="text-xl font-bold mb-2 text-title">{GOV_TOKEN.emoji}GALAXY TOKEN</h3>
+            <h3 className="text-xl font-bold mb-2 text-title">{GOV_TOKEN.emoji}{GOV_TOKEN.title.toUpperCase()} TOKEN</h3>
             <ul className="list-disc mb-4">
                 <li>Galaxy tokens are the governance tokens for the {TITLE} game.</li>
-                <li>Earn Galaxy Tokens by destroying Aliens.</li>
+                <li>Earn {GOV_TOKEN.title} by destroying Aliens.</li>
+                <li>{GOV_TOKEN.title} can be burned in Game to power up your ships attack and defense power.</li>
                 <li>Galaxy Tokens will control the DAO and earn protocol fees</li>
                 <li>Emissions rate of Galaxy tokens will be scheduled to decrease over time with a hard cap, subject to DAO votes.</li>
             </ul>
@@ -102,11 +103,12 @@ const Home: NextPage = () => {
             <ul className="list-disc mb-2">
                 <li>Your ship NFT utilizes a new type of smart contract standard (EIP-6551) aka <Link href="https://tokenbound.org/" className="text-link">Token Bound NFTs </Link>  
                 that allows the NFT itself to act as a smart wallet and OWN other tokens.</li>
-                <li>This new functionality is leveraged to allow your ship to own its staked ETH, AMMO and GALAXY TOKENS and to interact with the smart contract on your behalf.</li>
+                <li>This new functionality is leveraged to allow your ship to own its staked ETH, {UTILITY_TOKEN.title} and {GOV_TOKEN.title} tokens and to interact with the smart contract on your behalf.</li>
                 <li>You can own multiple ships with distinct attributes in one wallet and easily switch between them and perform bulk operations.</li>
-                <li>Each ship NFT will be a unique dynamically SVG stored on chain.</li>
+                <li>Each ship NFT will be a unique dynamic SVG created with your ships attributes.</li>
+                <li>You can burn {GOV_TOKEN.title} to increase your ships attack and defend power.</li>
                 <li>Beware this means that if you sell your ship, you sell all your game inventory and characteristics.</li>
-                <li> As owner of your ship you can always transfer tokens between your ship NFT and your wallet. However traits like Exp remain attributed to your wallet permanently.
+                <li>As owner of your ship you can always transfer tokens between your ship NFT and your wallet. However traits like Exp remain attributed to your wallet permanently.
                 </li>
             </ul>
             <h2 className="text-2xl mt-10 text-center font-bold text-red-600">Risks</h2>

@@ -6,7 +6,7 @@ import { RocketLaunchIcon} from "@heroicons/react/24/outline";
 const stakingAddresses = {
   'Lido': '🚀 Fly Here',
   'Rocket': '🚀 Fly Here',
-  'Frax': '',
+  'Frax': 'You are Here',
 };
 
 function Planet({ planet, onClick, isSelected }) {
@@ -21,12 +21,12 @@ function Planet({ planet, onClick, isSelected }) {
       </div>
       <div className="text-center mt-2 flex-grow">
         <h2 className='text-white'>Planet {planet.name}</h2>
-        <p>APR: <span className = "text-purple-500">{planet.apr}</span></p>
-        <p>Total Ships: <span className = "text-purple-500">{totalShips}</span></p>
-        <p>Total Aliens: <span className = "text-purple-500">{totalAliens}</span></p>
         <a href="#" className="text-blue-500 hover:underline cursor-pointer">
           {stakingAddresses[planet.name]}
         </a>
+        <p>APR: <span className = "text-purple-500">{planet.apr}</span></p>
+        <p>Total Ships: <span className = "text-purple-500">{totalShips}</span></p>
+        <p>Total Aliens: <span className = "text-purple-500">{totalAliens}</span></p>
       </div>
     </button>
   );

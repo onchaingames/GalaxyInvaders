@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TITLE, API_URL, UTILITY_TOKEN, GOV_TOKEN } from '~~/constants';
 
 function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) {
   const planet = planets[selectedPlanetIndex];
@@ -91,18 +92,24 @@ function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) 
           <div className="flex justify-between items-end w-full mb-4">
             <div className="border rounded flex justify-between items-end w-full">
               <div className="ml-2">
-                <label htmlFor="attackAmount" className="text-gray-500 font-bold text-xs block">Ammo</label>
-                <input type="text" id="attackAmount" name="attackAmount" defaultValue="0" className="py-2 rounded px-2 w-20 bg-transparent" />
+                <label htmlFor="attackAmount" className="text-gray-500 font-bold text-xs block">{UTILITY_TOKEN.emoji}Ammo</label>
+                <input type="text" id="attackAmount" name="attackAmount" defaultValue="0" className="py-2 rounded px-2 w-20 bg-transparent tooltip 
+                tooltip-info" data-tip = "How much Ammo would you like to fire?" />
               </div>
               <div className="text-gray-500 mb-1 mx-1 font-bold text-xs block">max</div>
             </div>
             <button
-              className="ml-2 text-white font-bold py-2 px-2 w-16 h-16 rounded-full flex items-center justify-center transition duration-150 ease-in-out transform active:scale-95 drop-shadow-2xl flex-shrink-0"
+              className="ml-2 text-white font-bold py-2 px-2 w-16 h-16 rounded-full flex items-center justify-center 
+              transition duration-150 ease-in-out transform active:scale-95 drop-shadow-2xl flex-shrink-0
+              tooltip tooltip-info animation-pulse"
+              data-tip = "Fire!"
+
               style={{
                 background: 'radial-gradient(circle at center, rgba(0, 0, 0, 0.4), transparent), rgba(0, 255, 0, 1)',
                 border: '4px solid rgba(255, 255, 255, 1)',
               }}
             >
+              Fire
             </button>
           </div>
         )}
