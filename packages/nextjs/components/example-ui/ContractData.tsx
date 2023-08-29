@@ -27,7 +27,8 @@ export const ContractData = () => {
 
   const { data: currentGreeting, isLoading: isGreetingLoading } = useScaffoldContractRead({
     contractName: "YourContract",
-    functionName: "greeting",
+    functionName: "uri", 
+    args: ["2"],
   });
 
   useScaffoldEventSubscriber({
@@ -72,6 +73,7 @@ export const ContractData = () => {
 
   return (
     <div className="flex flex-col justify-center items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] py-10 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
+      {currentGreeting}
       <div
         className={`flex flex-col max-w-md bg-base-200 bg-opacity-70 rounded-2xl shadow-lg px-5 py-4 w-full ${
           showAnimation ? "animate-zoom" : ""

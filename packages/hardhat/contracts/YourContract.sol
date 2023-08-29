@@ -1,91 +1,85 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-// Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-// Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
-// import "@openzeppelin/contracts/access/Ownable.sol";
 
-/**
- * A smart contract that allows changing a state variable of the contract and tracking the changes
- * It also allows the owner to withdraw the Ether in the contract
- * @author BuidlGuidl
- */
-contract YourContract {
-	// State Variables
-	address public immutable owner;
-	string public greeting = "Building Unstoppable Apps!!!";
-	bool public premium = false;
-	uint256 public totalCounter = 0;
-	mapping(address => uint) public userGreetingCounter;
 
-	// Events: a way to emit log statements from smart contract that can be listened to by external parties
-	event GreetingChange(
-		address indexed greetingSetter,
-		string newGreeting,
-		bool premium,
-		uint256 value
-	);
+contract YourContract is ERC1155, Ownable {
+    using Counters for Counters.Counter;
 
-	// Constructor: Called once on contract deployment
-	// Check packages/hardhat/deploy/00_deploy_your_contract.ts
-	constructor(address _owner) {
-		owner = _owner;
-	}
+    using Strings for uint;
+    string public greeting = "MY Apps!!!";
+    bool public premium = false;
+    uint256 public totalCounter = 0;
+    mapping(address => uint) public userGreetingCounter;
 
-	// Modifier: used to define a set of rules that must be met before or after a function is executed
-	// Check the withdraw() function
-	modifier isOwner() {
-		// msg.sender: predefined variable that represents address of the account that called the current function
-		require(msg.sender == owner, "Not the Owner");
-		_;
-	}
+    Counters.Counter private _tokenIds;
+    uint256 public constant AMMO = 0;
+    uint256 public constant GALX = 1;
+    uint256 public constant SPACESHIP = 2;
 
-	/**
-	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
-	 *
-	 * @param _newGreeting (string memory) - new greeting to save on the contract
-	 */
-	function setGreeting(string memory _newGreeting) public payable {
-		// Print data to the hardhat chain console. Remove when deploying to a live network.
-		console.log(
-			"Setting new greeting '%s' from %s",
-			_newGreeting,
-			msg.sender
-		);
+    constructor(address ownerX) ERC1155("") {
+        _mint(msg.sender, AMMO, type(uint256).max, "");
+        _tokenIds.increment();
+        _mint(msg.sender, GALX, 1000000, "");
+        _tokenIds.increment();
+        mintSpaceship(msg.sender, 50, 1);
+        mintSpaceship(msg.sender, 100, 2);
+    }
 
-		// Change state variables
-		greeting = _newGreeting;
-		totalCounter += 1;
-		userGreetingCounter[msg.sender] += 1;
+    function setGreeting(string memory _newGreeting) public payable {
+        greeting = _newGreeting;
+        totalCounter += 1;
+        userGreetingCounter[msg.sender] += 1;
 
-		// msg.value: built-in global variable that represents the amount of ether sent with the transaction
-		if (msg.value > 0) {
-			premium = true;
-		} else {
-			premium = false;
-		}
+        premium = msg.value > 0;
 
-		// emit: keyword used to trigger an event
-		emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, 0);
-	}
+        emit GreetingChange(msg.sender, _newGreeting, premium, 0);
+    }
 
-	/**
-	 * Function that allows the owner to withdraw all the Ether in the contract
-	 * The function can only be called by the owner of the contract as defined by the isOwner modifier
-	 */
-	function withdraw() public isOwner {
-		(bool success, ) = owner.call{ value: address(this).balance }("");
-		require(success, "Failed to send Ether");
-	}
+    function withdraw() public onlyOwner {
+        (bool success, ) = owner().call{ value: address(this).balance }("");
+        require(success, "Failed to send Ether");
+    }
 
-	function another(address me) public {
+    receive() external payable {}
 
-	}
+    function mintSpaceship(address account, uint256 power, uint256 planet) public onlyOwner {
+        _tokenIds.increment();
+        uint256 newTokenId = _tokenIds.current();
+        _mint(account, newTokenId, 1, "");
+    }
 
-	/**
-	 * Function that allows the contract to receive ETH
-	 */
-	receive() external payable {}
+        function generateSVGImage(uint256 tokenId) internal pure returns (string memory) {
+        // Example: Generate a simple SVG image based on tokenId
+        return string(abi.encodePacked("<svg><text x='10' y='20' font-family='Arial'>Token ID: ", tokenId.toString(), "</text></svg>"));
+    }
+
+    function uri(uint256 tokenId) public view virtual override returns (string memory) {
+        string memory svgImage = generateSVGImage(tokenId);
+        
+        // Encode the SVG to base64 (this is a simplified example; in a real-world scenario, you'd need a proper base64 encoding function)
+        string memory base64Image = string(abi.encodePacked("data:image/svg+xml;base64,", svgImage));
+
+        // Construct the JSON metadata
+        string memory json = string(abi.encodePacked('{"name": "Token ', tokenId.toString(), '", "description": "A description for your token", "image": "', base64Image, '"}'));
+
+        // Encode the JSON metadata to base64
+        string memory base64Json = string(abi.encodePacked("data:application/json;base64,", json));
+
+        // Return the final URI
+        return string(abi.encodePacked("data:application/json;base64,", base64Json));
+    }
+
+    event GreetingChange(
+        address indexed greetingSetter,
+        string newGreeting,
+        bool premium,
+        uint256 value
+    );
 }

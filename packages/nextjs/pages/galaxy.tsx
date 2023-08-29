@@ -5,14 +5,16 @@ import PlanetGrid, { planets } from '~~/components/universe/Planets';
 import PlanetSurface from '~~/components/universe/PlanetSurface';
 import ShipStats from '~~/components/universe/ShipStats';
 import TargetingSystem from '~~/components/universe/TargetingSystem';
+import { ContractData } from "~~/components/example-ui/ContractData";
+import { ContractInteraction } from "~~/components/example-ui/ContractInteraction";
+
 
 const galaxy: NextPage = () => {
-  const homeworlds = ['Lido', 'Rocket', 'Frax'];
 
   const planetsData = [
-    { name: homeworlds[0], color: 'red', apr: '15%' },
-    { name: homeworlds[1], color: 'yellow', apr: '23%' },
-    { name: homeworlds[2], color: 'blue', apr: '35%' },
+    { name: 'Lido', color: 'red', apr: '15%' },
+    { name: 'Coinbase', color: 'yellow', apr: '23%' },
+    //{ name: homeworlds[2], color: 'blue', apr: '35%' },
   ];
 
   const [planets, setPlanets] = useState(planetsData);
@@ -32,6 +34,8 @@ const galaxy: NextPage = () => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </MetaHeader>
+      <ContractInteraction />
+      <ContractData />
 
       <div className="planets mt-2 mb-4 ">
         <div className="planetTitle mb-4 text-center text-white text-2xl">
