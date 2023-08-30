@@ -6,8 +6,13 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+import "./Base64.sol";
 
 
+
+abstract contract svgBuilder{
+    function buildImage(uint tokenid ) external virtual view returns(string memory);
+}
 
 contract YourContract is ERC1155, Ownable {
     using Counters for Counters.Counter;
@@ -17,6 +22,7 @@ contract YourContract is ERC1155, Ownable {
     bool public premium = false;
     uint256 public totalCounter = 0;
     mapping(address => uint) public userGreetingCounter;
+    address public svgAddress;
 
     Counters.Counter private _tokenIds;
     uint256 public constant AMMO = 0;
@@ -55,25 +61,21 @@ contract YourContract is ERC1155, Ownable {
         _mint(account, newTokenId, 1, "");
     }
 
-        function generateSVGImage(uint256 tokenId) internal pure returns (string memory) {
+    function svg(uint256 tokenId) public view returns (string memory) {
         // Example: Generate a simple SVG image based on tokenId
-        return string(abi.encodePacked("<svg><text x='10' y='20' font-family='Arial'>Token ID: ", tokenId.toString(), "</text></svg>"));
+        //svgBuilder svgContract = svgBuilder(svgAddress);
+
+        //return svgContract.buildImage(tokenId);
+            //<svg><text x='10' y='20' font-family='Arial'>Token ID: ", tokenId.toString(), "</text></svg>"));
+    }
+
+    function setSvgAddress(address _svgAddress) external onlyOwner {
+        svgAddress =  _svgAddress;
     }
 
     function uri(uint256 tokenId) public view virtual override returns (string memory) {
-        string memory svgImage = generateSVGImage(tokenId);
-        
-        // Encode the SVG to base64 (this is a simplified example; in a real-world scenario, you'd need a proper base64 encoding function)
-        string memory base64Image = string(abi.encodePacked("data:image/svg+xml;base64,", svgImage));
-
-        // Construct the JSON metadata
-        string memory json = string(abi.encodePacked('{"name": "Token ', tokenId.toString(), '", "description": "A description for your token", "image": "', base64Image, '"}'));
-
-        // Encode the JSON metadata to base64
-        string memory base64Json = string(abi.encodePacked("data:application/json;base64,", json));
-
         // Return the final URI
-        return string(abi.encodePacked("data:application/json;base64,", base64Json));
+        return string("");
     }
 
     event GreetingChange(

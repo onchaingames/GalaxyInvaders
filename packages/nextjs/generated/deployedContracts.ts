@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         YourContract: {
-          address: "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82",
+          address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
           abi: [
             {
               inputs: [
@@ -466,6 +466,19 @@ const contracts = {
             {
               inputs: [
                 {
+                  internalType: "address",
+                  name: "_svgAddress",
+                  type: "address",
+                },
+              ],
+              name: "setSvgAddress",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
                   internalType: "bytes4",
                   name: "interfaceId",
                   type: "bytes4",
@@ -477,6 +490,38 @@ const contracts = {
                   internalType: "bool",
                   name: "",
                   type: "bool",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "tokenId",
+                  type: "uint256",
+                },
+              ],
+              name: "svg",
+              outputs: [
+                {
+                  internalType: "string",
+                  name: "",
+                  type: "string",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "svgAddress",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
                 },
               ],
               stateMutability: "view",
