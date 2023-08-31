@@ -7,7 +7,7 @@ import { DeployFunction } from "hardhat-deploy/types";
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deployGalaxyTokens: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -21,10 +21,10 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("GalaxyTokens", {
+  await deploy("SvgBuilder", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    //args: [deployer],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -32,11 +32,17 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   });
 
   // Get the deployed contract
-  // const GalaxyTokens = await hre.ethers.getContract("GalaxyTokens", deployer);
+  const SvgBuilder = await hre.ethers.getContract("SvgBuilder", deployer);
+  const tokens = await hre.ethers.getContract("GalaxyTokens", deployer);
+  await tokens.setSvgAddress(SvgBuilder.address).then((tx) => tx.wait());
+  console.log("Set svg contract address in token contract to: ", SvgBuilder.address);
+  //await tokens.mint("0x5299Ac329356d10360FB22089748c505625aeEeE", "We are Minting you a Message!").then((tx) => tx.wait());;
+  //const owner = await Messenger.ownerOf(1);
+  //console.log("Owner of the first minted NFT is:", owner);
 };
 
-export default deployYourContract;
+export default deployGalaxyTokens;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["GalaxyTokens"];
+deployGalaxyTokens.tags = ["YourContract"];

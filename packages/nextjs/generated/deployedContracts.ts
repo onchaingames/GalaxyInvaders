@@ -4,8 +4,8 @@ const contracts = {
       chainId: "31337",
       name: "localhost",
       contracts: {
-        YourContract: {
-          address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
+        GalaxyTokens: {
+          address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
           abi: [
             {
               inputs: [
@@ -601,6 +601,92 @@ const contracts = {
             {
               stateMutability: "payable",
               type: "receive",
+            },
+          ],
+        },
+        SvgBuilder: {
+          address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+          abi: [
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: true,
+                  internalType: "address",
+                  name: "previousOwner",
+                  type: "address",
+                },
+                {
+                  indexed: true,
+                  internalType: "address",
+                  name: "newOwner",
+                  type: "address",
+                },
+              ],
+              name: "OwnershipTransferred",
+              type: "event",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "power",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "ammo",
+                  type: "uint256",
+                },
+              ],
+              name: "buildImage",
+              outputs: [
+                {
+                  internalType: "string",
+                  name: "",
+                  type: "string",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "owner",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "renounceOwnership",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "newOwner",
+                  type: "address",
+                },
+              ],
+              name: "transferOwnership",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
             },
           ],
         },

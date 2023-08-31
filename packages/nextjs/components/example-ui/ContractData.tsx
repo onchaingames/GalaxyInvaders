@@ -31,12 +31,6 @@ export const ContractData = () => {
     args: ["2"],
   });
 
-  const { data: svgImage } = useScaffoldContractRead({
-    contractName: "YourContract",
-    functionName: "svg", 
-    args: ["2"],
-  });
-
   useScaffoldEventSubscriber({
     contractName: "YourContract",
     eventName: "GreetingChange",
@@ -83,16 +77,21 @@ export const ContractData = () => {
     </svg>
   `);
 
+  const { data: svgImage } = useScaffoldContractRead({
+    contractName: "GalaxyTokens",
+    functionName: "svg", 
+    args: ["2"],
+  });
+
+
   // Convert the SVG string to a Data URL
   const svgDataUrl = `data:image/svg+xml,${encodeURIComponent(svgImage)}`;
 
   return (
     <div className="flex flex-col justify-center items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] py-10 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
-      {currentGreeting}
       {/* Display the SVG as an image */}
-      SVG:::::
-      {svgImage}
-      <img src={svgDataUrl} alt="SVG as Image" />
+      <img src={svgDataUrl} alt="SVG as Image" style={{ width: '200px', height: '200px' }} />
+
       <div
         className={`flex flex-col max-w-md bg-base-200 bg-opacity-70 rounded-2xl shadow-lg px-5 py-4 w-full ${
           showAnimation ? "animate-zoom" : ""

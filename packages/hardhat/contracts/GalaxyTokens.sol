@@ -10,11 +10,11 @@ import "./Base64.sol";
 
 
 
-abstract contract svgBuilder{
-    function buildImage(uint tokenid ) external virtual view returns(string memory);
+abstract contract SvgBuilderContract{
+    function buildImage(uint tokenid, uint power, uint ammo ) external virtual view returns(string memory);
 }
 
-contract YourContract is ERC1155, Ownable {
+contract GalaxyTokens is ERC1155, Ownable {
     using Counters for Counters.Counter;
 
     using Strings for uint;
@@ -63,10 +63,17 @@ contract YourContract is ERC1155, Ownable {
 
     function svg(uint256 tokenId) public view returns (string memory) {
         // Example: Generate a simple SVG image based on tokenId
-        //svgBuilder svgContract = svgBuilder(svgAddress);
-
-        //return svgContract.buildImage(tokenId);
-            //<svg><text x='10' y='20' font-family='Arial'>Token ID: ", tokenId.toString(), "</text></svg>"));
+        if(svgAddress != address(0)){
+            SvgBuilderContract svgContract = SvgBuilderContract(svgAddress);
+            return svgContract.buildImage(tokenId, 1, 1);
+        }
+        else{
+            return string(abi.encodePacked(
+                '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">',
+                '<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />',
+                '<text x="10" y="20" font-family="Arial">Token ID: ', tokenId.toString(), '</text>', 
+                '</svg>'));
+        }
     }
 
     function setSvgAddress(address _svgAddress) external onlyOwner {
