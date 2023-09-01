@@ -65,7 +65,9 @@ contract GalaxyTokens is ERC1155, Ownable {
         // Example: Generate a simple SVG image based on tokenId
         if(svgAddress != address(0)){
             SvgBuilderContract svgContract = SvgBuilderContract(svgAddress);
-            return svgContract.buildImage(tokenId, 1, 1);
+            string memory SVG = svgContract.buildImage(tokenId, 1, 1);
+            console.log(SVG);
+            return SVG;
         }
         else{
             return string(abi.encodePacked(

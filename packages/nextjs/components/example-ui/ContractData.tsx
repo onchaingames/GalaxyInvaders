@@ -8,6 +8,8 @@ import {
   useScaffoldEventHistory,
   useScaffoldEventSubscriber,
 } from "~~/hooks/scaffold-eth";
+import SvgBuilder from "~~/components/universe/SvgBuilder";
+
 
 const MARQUEE_PERIOD_IN_SEC = 5;
 
@@ -21,18 +23,18 @@ export const ContractData = () => {
   const greetingRef = useRef<HTMLDivElement>(null);
 
   const { data: totalCounter } = useScaffoldContractRead({
-    contractName: "YourContract",
+    contractName: "GalaxyTokens",
     functionName: "totalCounter",
   });
 
   const { data: currentGreeting, isLoading: isGreetingLoading } = useScaffoldContractRead({
-    contractName: "YourContract",
+    contractName: "GalaxyTokens",
     functionName: "uri", 
     args: ["2"],
   });
 
   useScaffoldEventSubscriber({
-    contractName: "YourContract",
+    contractName: "GalaxyTokens",
     eventName: "GreetingChange",
     listener: logs => {
       logs.map(log => {
@@ -47,7 +49,7 @@ export const ContractData = () => {
     isLoading: isLoadingEvents,
     error: errorReadingEvents,
   } = useScaffoldEventHistory({
-    contractName: "YourContract",
+    contractName: "GalaxyTokens",
     eventName: "GreetingChange",
     fromBlock: process.env.NEXT_PUBLIC_DEPLOY_BLOCK ? BigInt(process.env.NEXT_PUBLIC_DEPLOY_BLOCK) : 0n,
     filters: { greetingSetter: address },
@@ -56,8 +58,8 @@ export const ContractData = () => {
 
   console.log("Events:", isLoadingEvents, errorReadingEvents, myGreetingChangeEvents);
 
-  const { data: yourContract } = useScaffoldContract({ contractName: "YourContract" });
-  console.log("yourContract: ", yourContract);
+  const { data: yourContract } = useScaffoldContract({ contractName: "GalaxyTokens" });
+  console.log("GalaxyTokens: ", yourContract);
 
   const { showAnimation } = useAnimationConfig(totalCounter);
 
@@ -71,26 +73,14 @@ export const ContractData = () => {
     }
   }, [transitionEnabled, containerRef, greetingRef]);
 
-  const [svgString, setSvgString] = useState(`
-    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-    </svg>
-  `);
 
-  const { data: svgImage } = useScaffoldContractRead({
-    contractName: "GalaxyTokens",
-    functionName: "svg", 
-    args: ["2"],
-  });
-
-
-  // Convert the SVG string to a Data URL
-  const svgDataUrl = `data:image/svg+xml,${encodeURIComponent(svgImage)}`;
-
+  const ids = [1, 2, 3, 4, 5]; // or any other dynamic source of IDs
   return (
     <div className="flex flex-col justify-center items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] py-10 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
-      {/* Display the SVG as an image */}
-      <img src={svgDataUrl} alt="SVG as Image" style={{ width: '200px', height: '200px' }} />
+
+  <div>
+    {ids.map(id => <SvgBuilder key={id} id={id} />)}
+  </div>
 
       <div
         className={`flex flex-col max-w-md bg-base-200 bg-opacity-70 rounded-2xl shadow-lg px-5 py-4 w-full ${

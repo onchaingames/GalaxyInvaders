@@ -34,7 +34,7 @@ const galaxy: NextPage = () => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </MetaHeader>
-      <ContractInteraction />
+      {/**<ContractInteraction />**/}
       <ContractData />
 
       <div className="planets mt-2 mb-4 ">
