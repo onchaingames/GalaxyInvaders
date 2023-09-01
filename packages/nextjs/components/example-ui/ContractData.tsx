@@ -74,13 +74,14 @@ export const ContractData = () => {
   }, [transitionEnabled, containerRef, greetingRef]);
 
 
-  const ids = [1, 2, 3, 4, 5]; // or any other dynamic source of IDs
   return (
-    <div className="flex flex-col justify-center items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] py-10 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
+    <div className="flex flex-col justify-center items-center bg-black bg-[length:100%_100%] py-10 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
 
-  <div>
-    {ids.map(id => <SvgBuilder key={id} id={id} />)}
+  <div className="flex justify-between items-center">
+    <SvgBuilder numShips={20} />
+
   </div>
+
 
       <div
         className={`flex flex-col max-w-md bg-base-200 bg-opacity-70 rounded-2xl shadow-lg px-5 py-4 w-full ${
