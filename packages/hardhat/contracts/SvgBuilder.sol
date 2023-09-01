@@ -39,25 +39,32 @@ contract SvgBuilder is Ownable {
         uint8 hullHeight = boxSize - buffer * 2;
         uint8 hullWidth = 4;
         uint8 maxColumns = (boxSize - hullWidth) / 2 - buffer;
-        uint8 minWingHeight = 3;
+        uint8 minWingHeight = 5;
         uint8 delta = 4;
-        uint8 startY;
-        uint8 height; // Ensuring the end height is within 1 px of the startY height
+        uint8 startY = buffer + uint8(ySeed % (hullHeight *3 / 4));
+        uint8 height = minWingHeight + uint8(hSeed % (hullHeight/3) );
 
         for(uint8 i = 0; i < maxColumns; i++) {
             //get new seed
             ySeed = uint256(keccak256(abi.encodePacked(ySeed)));
             hSeed = uint256(keccak256(abi.encodePacked(hSeed)));
+            uint8 yDelta = (uint8(ySeed % delta * 2)); 
+            uint8 hDelta = (uint8(hSeed % delta * 2));
 
-            //uint8 randomDelta =  uint8((ySeed % delta)  / (((ySeed % delta)) * ((ySeed % delta))) );
-
-            if(startY == 0){
-                startY = buffer + uint8(ySeed % (hullHeight/2));
-                height =  minWingHeight + uint8(hSeed % (boxSize - buffer - startY - minWingHeight) ) ; // Ensuring the end height is within 1 px of the startY height
-            }else{
-                startY = startY + uint8(ySeed % (delta * 2)) - delta;
-                height =  height + uint8(hSeed  % (delta * 2)) - delta; 
+            //check that wing width isn't smaller than the min or that it exceeds the box
+            if(height + hDelta < delta + minWingHeight || startY + height + hDelta - delta > boxSize - buffer){
+                height = height - hDelta + delta; 
+            } else {
+                height = height + hDelta - delta; 
             }
+            //if start value is to low or too high, flip the delta
+            if(startY + yDelta < buffer + delta || startY + yDelta - delta > boxSize - buffer - height) {
+                startY = startY - yDelta + delta; 
+            } else {
+                startY = startY + yDelta - delta;
+            }
+
+
             //add some limits to keep in buffer
             //make delta more likely to be small
 
