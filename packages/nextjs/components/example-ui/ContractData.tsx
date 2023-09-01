@@ -77,10 +77,10 @@ export const ContractData = () => {
   return (
     <div className="flex flex-col justify-center items-center bg-black bg-[length:100%_100%] py-10 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
 
-  <div className="flex justify-between items-center">
-    <SvgBuilder numShips={20} />
+    <div className="flex justify-start flex-wrap items-center">
+      <SvgBuilder numShips={20} />
 
-  </div>
+    </div>
 
 
       <div

@@ -605,7 +605,7 @@ const contracts = {
           ],
         },
         SvgBuilder: {
-          address: "0x95775fD3Afb1F4072794CA4ddA27F2444BCf8Ac3",
+          address: "0x512F7469BcC83089497506b5df64c6E246B39925",
           abi: [
             {
               anonymous: false,

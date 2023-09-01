@@ -82,15 +82,15 @@ contract SvgBuilder is Ownable {
         return pattern;
     }
 
-    function getDelta(uint seed, uint8 limit) internal pure returns(uint8 i) {
-        for(i = 0; i < limit; i++) {
+    function getDelta(uint seed, uint8 limit) internal pure returns(uint8) {
+        for(uint8 i = 0; i < limit; i++) {
             //console.log("i: ", i);
             uint8 cutoff = limit / uint8(2 ** (i + 1));
             //console.log("cutoff: ", cutoff);
             uint8 test = uint8(seed % limit);
             //console.log("test: ", test);
             if(test > cutoff) return i;
-            //seed = uint256(keccak256(abi.encodePacked(seed)));
+            seed = uint256(keccak256(abi.encodePacked(seed)));
         }
     }
 }

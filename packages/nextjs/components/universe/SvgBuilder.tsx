@@ -16,8 +16,8 @@ function SvgBuilder({ numShips = 10 }) {
     const svgDataUrl = `data:image/svg+xml,${encodeURIComponent(svgImage)}`;
 
     //return <img src={svgDataUrl} alt={`SVG for ID ${id}`} style={{ width: '200px', height: '200px' }} />;
-    //return <img key={id} src={svgDataUrl} alt={`SVG for ID ${id}`} style={{ width: '200px', height: '200px', animation: "spin 20s linear infinite"  }} className="animate-spin duration-10000" />;
-    return <img key={id} src={svgDataUrl} alt={`SVG for ID ${id}`} style={{ animation: "spin 20s linear infinite"  }} className="animate-spin duration-10000" />;
+    return <img key={id} src={svgDataUrl} alt={`SVG for ID ${id}`} style={{ width: '200px', height: '200px', animation: "spin 20s linear infinite"  }} className="animate-spin duration-10000" />;
+    //return <img key={id} src={svgDataUrl} alt={`SVG for ID ${id}`} style={{ animation: "spin 20s linear infinite"  }} className="animate-spin duration-10000" />;
   });
 
   return (
