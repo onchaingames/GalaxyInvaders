@@ -34,8 +34,8 @@ contract GalaxyTokens is ERC1155, Ownable {
         _tokenIds.increment();
         _mint(msg.sender, GALX, 1000000, "");
         _tokenIds.increment();
-        mintSpaceship(msg.sender, 50, 1);
-        mintSpaceship(msg.sender, 100, 2);
+        mintSpaceship(msg.sender, 1);
+        mintSpaceship(msg.sender, 2);
     }
 
     function setGreeting(string memory _newGreeting) public payable {
@@ -55,10 +55,22 @@ contract GalaxyTokens is ERC1155, Ownable {
 
     receive() external payable {}
 
-    function mintSpaceship(address account, uint256 power, uint256 planet) public onlyOwner {
+    function mintSpaceship(address account, uint256 planet) public onlyOwner {
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
         _mint(account, newTokenId, 1, "");
+    }
+
+    function mintSpaceships(uint256[] memory amounts) public onlyOwner {
+        require(amounts.length > 0, "Must specify at least one spaceship to mint.");
+
+        uint256[] memory ids = new uint256[](amounts.length);
+        for (uint256 i = 0; i < amounts.length; i++) {
+            _tokenIds.increment();
+            ids[i] = _tokenIds.current();
+        }
+
+        _mintBatch(msg.sender, ids, amounts, "");
     }
 
     function svg(uint256 tokenId) public view returns (string memory) {

@@ -6,7 +6,7 @@ import PlanetSurface from '~~/components/universe/PlanetSurface';
 import ShipStats from '~~/components/universe/ShipStats';
 import TargetingSystem from '~~/components/universe/TargetingSystem';
 import { ContractData } from "~~/components/example-ui/ContractData";
-import { ContractInteraction } from "~~/components/example-ui/ContractInteraction";
+import { Mint } from "~~/components/example-ui/Mint";
 
 
 const galaxy: NextPage = () => {

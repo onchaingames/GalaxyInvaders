@@ -41,8 +41,11 @@ export const Header = () => {
           Home
         </NavLink>
         <NavLink href="/galaxy">
+          Game
+        </NavLink>
+        <NavLink href="/spaceshipLab">
           <RocketLaunchIcon className="h-4 w-4" />
-          App
+          Spaceship Lab
         </NavLink>
       </li>
     </>
