@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         GalaxyTokens: {
-          address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+          address: "0x36b58F5C1969B7b6591D752ea6F5486D069010AB",
           abi: [
             {
               inputs: [
@@ -319,16 +319,24 @@ const contracts = {
                 },
                 {
                   internalType: "uint256",
-                  name: "power",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
                   name: "planet",
                   type: "uint256",
                 },
               ],
               name: "mintSpaceship",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256[]",
+                  name: "amounts",
+                  type: "uint256[]",
+                },
+              ],
+              name: "mintSpaceships",
               outputs: [],
               stateMutability: "nonpayable",
               type: "function",
@@ -605,7 +613,7 @@ const contracts = {
           ],
         },
         SvgBuilder: {
-          address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+          address: "0xBEc49fA140aCaA83533fB00A2BB19bDdd0290f25",
           abi: [
             {
               anonymous: false,
