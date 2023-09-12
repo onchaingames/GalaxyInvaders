@@ -11,10 +11,8 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract SvgBuilder is Ownable {
 
     using Strings for uint;
-    uint8 constant buffer = 0; // Start at the middle of the hull
-    uint8 constant boxSize = 32;
-    uint8 constant hullHeight = boxSize - buffer * 2;
-    uint8 constant hullWidth = 4;
+    uint8 constant boxSize = 16;
+    uint8 constant hullHeight = boxSize;
 
     function buildImage(uint id, uint power, uint ammo) external pure returns(string memory){
         // Generate a unique color for the ship based on the id
@@ -26,75 +24,77 @@ contract SvgBuilder is Ownable {
         uint pretendPower = uint256(keccak256(abi.encodePacked(id))) % 100;
         uint pretendAmmo = uint256(keccak256(abi.encodePacked(id))) % 100;
 
-    return string(abi.encodePacked(
-        '<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" >',
-        '<defs>',
-        '   <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">',
-        '       <stop offset="', pretendAmmo.toString(), '%" style="stop-color: ',color,';" />',
-        '       <stop offset="100%" style="stop-color: white;" />',
-        '   </linearGradient>',
-        '</defs>',
-        '<rect x="14" y="', uint256(buffer + 1).toString(), '" width="', uint256(hullWidth).toString(), '.1" height="', uint(hullHeight - 2).toString(), '" fill="', color, '" />', // Hull of the ship with gradient
-        '<rect x="15" y="', uint256(buffer + 1).toString(), '" width="2.1" height="', uint(hullHeight - 1).toString(), '" className="animate-pulse" fill="', color, '"/>', // Hull of the ship
-        wingPattern, // Symmetric wing pattern
-        '</svg>'
-    ));
-    
-
-
-
+        return string(abi.encodePacked(
+            '<svg width="', uint256(boxSize).toString(), '" height="', uint256(boxSize).toString(), '" xmlns="http://www.w3.org/2000/svg" >',
+            '<defs>',
+            '   <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">',
+            '       <stop offset="', pretendAmmo.toString(), '%" style="stop-color: ',color,';" />',
+            '       <stop offset="100%" style="stop-color: white;" />',
+            '   </linearGradient>',
+            '</defs>',
+            //'<rect x="', uint256(boxSize/2 - hullWidth).toString(), '14" y="', uint256(1).toString(), '" width="', uint256(hullWidth).toString(), '.1" height="', uint(hullHeight - 2).toString(), '" fill="', color, '" />', // Hull of the ship with gradient
+            //'<rect x="', uint256(boxSize/2 -hullWidth +1).toString(), '15" y="', uint256(1).toString(), '" width="2.1" height="', uint(hullHeight - 1).toString(), '" className="animate-pulse" fill="', color, '"/>', // Hull of the ship
+            wingPattern, // Symmetric wing pattern
+            '</svg>'
+        ));
     }
 
     function generateWingPattern(uint id, string memory color) internal pure returns(string memory) {
         uint256 ySeed = uint256(keccak256(abi.encodePacked(id)));
         uint256 hSeed = uint256(keccak256(abi.encodePacked(ySeed)));
         string memory pattern = "";
-        uint8 maxColumns = (boxSize - hullWidth) / 2 - buffer;
-        uint8 minWingHeight = 5;
-        uint8 delta = 3;
-        uint8 slope = 1;
-        uint8 startY = buffer + uint8(ySeed % (hullHeight *3 / 4));
-        uint8 height = minWingHeight + uint8(hSeed % (hullHeight/3) );
-        startY = buffer + 2;
-        height = hullHeight*2/3 + uint8(hSeed % 3);
+        uint8 maxColumns = (boxSize) / 2 ;
+        uint8 minWingHeight = boxSize/8 + 1;
+        uint8 delta = boxSize/4; //change in wing width from col to col at value 3, we get +/-1 or zero. delta = 5: -2,-1,0,1,2
+        uint8 slope = boxSize/16 + 1; //this var creates a negative trend to the deltas, making the ship more aero.
+        uint8 startY = boxSize/16;
+        uint8 height = hullHeight-1;
 
         for(uint8 i = 0; i < maxColumns; i++) {
-            //get new seed
-            ySeed = uint256(keccak256(abi.encodePacked(ySeed)));
-            hSeed = uint256(keccak256(abi.encodePacked(hSeed)));
-            //uint8 yDelta = (uint8(ySeed % delta * 2)); 
-            //uint8 hDelta = (uint8(hSeed % delta * 2));
-            uint8 yDelta = getDelta(ySeed, delta + slope) * 2;
-            uint8 hDelta = getDelta(hSeed, delta) * 2;
+            // for the first loop use default values
+            if(i > 0){
+                if(i < 3) height -= boxSize/16;
+                //get new seed
+                ySeed = uint256(keccak256(abi.encodePacked(ySeed)));
+                hSeed = uint256(keccak256(abi.encodePacked(hSeed)));
+                //uint8 yDelta = (uint8(ySeed % delta)); 
+                //uint8 hDelta = (uint8(hSeed % delta));
+                uint8 yDelta = getDelta(ySeed, delta);
+                uint8 hDelta = getDelta(hSeed, delta);
+                uint8 hHalfDelta = delta/2 + slope;
+                uint8 yHalfDelta = delta/2;
 
-            //check that wing width isn't smaller than the min or that it exceeds the box
-            if(height + hDelta < delta + minWingHeight || startY + height + hDelta - delta > boxSize - buffer){
-                height = height - hDelta + delta; 
-            } else {
-                height = height + hDelta - delta; 
+                //check that wing width isn't smaller than the min or that it exceeds the box
+                if(height + hDelta  < minWingHeight + hHalfDelta  || startY + height + hDelta  > boxSize + hHalfDelta ){
+                    height = height - hDelta + hHalfDelta; 
+                } else {
+                    height = height + hDelta - hHalfDelta; 
+                }
+                //if start value is to low or too high, flip the delta
+                // equation was (startY + yDelta - delta < 0) but this caused an underflow in the test, so i had to move delta to the otherside of the equation
+                //console.log("id: ", id);
+                //console.log("startY: ", startY);
+                //console.log("yDelta: ", yDelta);
+                //if we start at a negative value || if the new makes our wing width smaller than the min
+                if(startY + yDelta < yHalfDelta ) {
+                    startY = startY + yHalfDelta - yDelta; 
+                } else {
+                    startY = startY + yDelta - yHalfDelta;
+                }
             }
-            //if start value is to low or too high, flip the delta
-            // equation was (startY + yDelta - delta < buffer) but this caused an underflow in the test, so i had to move delta to the otherside of the equation
-            //console.log("id: ", id);
-            //console.log("startY: ", startY);
-            //console.log("yDelta: ", yDelta);
-            if(startY + yDelta < buffer + delta || startY + yDelta - delta > boxSize - buffer - height) {
-                startY = startY + delta - yDelta; 
-            } else {
-                startY = startY + yDelta - delta;
-            }
 
-            uint8 xLeft = (boxSize + 1)/2 - (hullWidth + 1)/2 - i;
-            uint8 xRight = boxSize/2 + hullWidth/2 + i;
-
+            uint8 xLeft = boxSize/2 - 1 - i;
+            uint8 xRight = boxSize/2 + i;
+            
             pattern = string(abi.encodePacked(pattern, 
-                '<rect x="', uint256(xLeft - 1).toString(), '" y="', uint256(startY).toString(), '" width="1.2" height="', uint256(height).toString(), '" fill="', color,'"/>', // Left wing
-                '<rect x="', uint256(xRight - 0).toString(), '" y="', uint256(startY).toString(), '" width="1.2" height="', uint256(height).toString(), '" fill="', color,'" />' // Right wing
+                '<rect x="', uint256(xLeft).toString(), '" y="', uint256(startY).toString(), '" width="1.2" height="', uint256(height).toString(), '" fill="', color,'"/>', // Left wing
+                '<rect x="', uint256(xRight).toString(), '" y="', uint256(startY).toString(), '" width="1.2" height="', uint256(height).toString(), '" fill="', color,'" />' // Right wing
             ));
         }
         return pattern;
     }
 
+    //lower numbers are exponentially more likely than higher ones to help smooth the wing profile
     function getDelta(uint seed, uint8 limit) internal pure returns(uint8) {
         for(uint8 i = 0; i < limit; i++) {
             //console.log("i: ", i);

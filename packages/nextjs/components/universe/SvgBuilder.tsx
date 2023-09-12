@@ -42,8 +42,8 @@ function SvgBuilder() {
         <img
           src={svgDataUrl}
           alt={`SVG for ID ${id}`}
-          className="z-10 relative"
-          style={{ width: '300px', height: '300px' }}
+          className="z-10 relative "
+          style={{ width: '30px', height: '30px' }}
         />
       </div>
     );

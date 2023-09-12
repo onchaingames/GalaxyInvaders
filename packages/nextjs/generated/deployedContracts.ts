@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         GalaxyTokens: {
-          address: "0x36b58F5C1969B7b6591D752ea6F5486D069010AB",
+          address: "0xC9a43158891282A2B1475592D5719c001986Aaec",
           abi: [
             {
               inputs: [
@@ -613,7 +613,7 @@ const contracts = {
           ],
         },
         SvgBuilder: {
-          address: "0xBEc49fA140aCaA83533fB00A2BB19bDdd0290f25",
+          address: "0x071586BA1b380B00B793Cc336fe01106B0BFbE6D",
           abi: [
             {
               anonymous: false,
