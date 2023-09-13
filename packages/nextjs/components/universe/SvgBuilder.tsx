@@ -43,7 +43,7 @@ function SvgBuilder() {
           src={svgDataUrl}
           alt={`SVG for ID ${id}`}
           className="z-10 relative "
-          style={{ width: '30px', height: '30px' }}
+          style={{ width: '64px', height: '64px' }}
         />
       </div>
     );
@@ -57,7 +57,7 @@ function SvgBuilder() {
         className="mb-4 p-2 bg-blue-500 text-white rounded"
         onClick={() => setStartingId(prevId => prevId + 10)}
       >
-        Next 10 Ships
+        Mint 10 Ships
       </button>
       <div className="flex justify-between items-center flex-wrap">
         {ships}

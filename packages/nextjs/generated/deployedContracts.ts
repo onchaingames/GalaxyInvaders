@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         GalaxyTokens: {
-          address: "0xC9a43158891282A2B1475592D5719c001986Aaec",
+          address: "0x67aD6EA566BA6B0fC52e97Bc25CE46120fdAc04c",
           abi: [
             {
               inputs: [
@@ -368,6 +368,25 @@ const contracts = {
               type: "function",
             },
             {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+              ],
+              name: "renderTokenById",
+              outputs: [
+                {
+                  internalType: "string",
+                  name: "",
+                  type: "string",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
               inputs: [],
               name: "renounceOwnership",
               outputs: [],
@@ -507,7 +526,7 @@ const contracts = {
               inputs: [
                 {
                   internalType: "uint256",
-                  name: "tokenId",
+                  name: "id",
                   type: "uint256",
                 },
               ],
@@ -613,7 +632,7 @@ const contracts = {
           ],
         },
         SvgBuilder: {
-          address: "0x071586BA1b380B00B793Cc336fe01106B0BFbE6D",
+          address: "0x976C214741b4657bd99DFD38a5c0E3ac5C99D903",
           abi: [
             {
               anonymous: false,
@@ -635,35 +654,6 @@ const contracts = {
               type: "event",
             },
             {
-              inputs: [
-                {
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "power",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "ammo",
-                  type: "uint256",
-                },
-              ],
-              name: "buildImage",
-              outputs: [
-                {
-                  internalType: "string",
-                  name: "",
-                  type: "string",
-                },
-              ],
-              stateMutability: "pure",
-              type: "function",
-            },
-            {
               inputs: [],
               name: "owner",
               outputs: [
@@ -671,6 +661,25 @@ const contracts = {
                   internalType: "address",
                   name: "",
                   type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+              ],
+              name: "renderTokenById",
+              outputs: [
+                {
+                  internalType: "string",
+                  name: "",
+                  type: "string",
                 },
               ],
               stateMutability: "view",

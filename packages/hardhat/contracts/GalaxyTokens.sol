@@ -11,7 +11,7 @@ import "./Base64.sol";
 
 
 abstract contract SvgBuilderContract{
-    function buildImage(uint tokenid, uint power, uint ammo ) external virtual view returns(string memory);
+    function renderTokenById(uint id) external virtual view returns(string memory);
 }
 
 contract GalaxyTokens is ERC1155, Ownable {
@@ -73,13 +73,26 @@ contract GalaxyTokens is ERC1155, Ownable {
         _mintBatch(msg.sender, ids, amounts, "");
     }
 
-    function svg(uint256 tokenId) public view returns (string memory) {
-        // Example: Generate a simple SVG image based on tokenId
+    function generateSVGofTokenById(uint256 id) internal view returns (string memory) {
+
+    }
+
+    // Visibility is `public` to enable it being called by other contracts for composition.
+    function renderTokenById(uint256 id) public view returns (string memory) {
         require(svgAddress != address(0), "set svgAddress");
         SvgBuilderContract svgContract = SvgBuilderContract(svgAddress);
-        string memory SVG = svgContract.buildImage(tokenId, 1, 1);
-        console.log(SVG);
-        return SVG;
+        return svgContract.renderTokenById(id);
+        //console.log(SVG);
+    }
+
+    function svg(uint256 id) public view returns (string memory) {
+        // Example: Generate a simple SVG image based on tokenId
+        string memory svg = string(abi.encodePacked(
+        '<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">',
+            renderTokenById(id),
+        '</svg>'
+        ));
+        return svg;
     }
 
     function setSvgAddress(address _svgAddress) external onlyOwner {

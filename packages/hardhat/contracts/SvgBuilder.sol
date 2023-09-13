@@ -14,32 +14,10 @@ contract SvgBuilder is Ownable {
     uint8 constant boxSize = 16;
     uint8 constant hullHeight = boxSize;
 
-    function buildImage(uint id, uint power, uint ammo) external pure returns(string memory){
+    function renderTokenById(uint256 id) public view returns (string memory) {
         // Generate a unique color for the ship based on the id
         string[5] memory spaceColors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A6", "#33FFF6"]; // Example space colors
         string memory color = spaceColors[id % spaceColors.length];
-
-        // Generate a unique wing pattern based on the id
-        string memory wingPattern = generateWingPattern(id, color);
-        uint pretendPower = uint256(keccak256(abi.encodePacked(id))) % 100;
-        uint pretendAmmo = uint256(keccak256(abi.encodePacked(id))) % 100;
-
-        return string(abi.encodePacked(
-            '<svg width="', uint256(boxSize).toString(), '" height="', uint256(boxSize).toString(), '" xmlns="http://www.w3.org/2000/svg" >',
-            '<defs>',
-            '   <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">',
-            '       <stop offset="', pretendAmmo.toString(), '%" style="stop-color: ',color,';" />',
-            '       <stop offset="100%" style="stop-color: white;" />',
-            '   </linearGradient>',
-            '</defs>',
-            //'<rect x="', uint256(boxSize/2 - hullWidth).toString(), '14" y="', uint256(1).toString(), '" width="', uint256(hullWidth).toString(), '.1" height="', uint(hullHeight - 2).toString(), '" fill="', color, '" />', // Hull of the ship with gradient
-            //'<rect x="', uint256(boxSize/2 -hullWidth +1).toString(), '15" y="', uint256(1).toString(), '" width="2.1" height="', uint(hullHeight - 1).toString(), '" className="animate-pulse" fill="', color, '"/>', // Hull of the ship
-            wingPattern, // Symmetric wing pattern
-            '</svg>'
-        ));
-    }
-
-    function generateWingPattern(uint id, string memory color) internal pure returns(string memory) {
         uint256 ySeed = uint256(keccak256(abi.encodePacked(id)));
         uint256 hSeed = uint256(keccak256(abi.encodePacked(ySeed)));
         string memory pattern = "";
@@ -48,7 +26,7 @@ contract SvgBuilder is Ownable {
         uint8 delta = boxSize/4; //change in wing width from col to col at value 3, we get +/-1 or zero. delta = 5: -2,-1,0,1,2
         uint8 slope = boxSize/16 + 1; //this var creates a negative trend to the deltas, making the ship more aero.
         uint8 startY = boxSize/16;
-        uint8 height = hullHeight-1;
+        uint8 height = hullHeight - startY - uint8(ySeed % 5);
 
         for(uint8 i = 0; i < maxColumns; i++) {
             // for the first loop use default values
