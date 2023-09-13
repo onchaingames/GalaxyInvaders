@@ -47,7 +47,7 @@ const Home: NextPage = () => {
             <h3 className="text-xl font-bold mb-2 text-title">💰STAKING</h3>
             <ul className="list-disc mb-4">
                 <li>Mint a Space Ship by staking Eth in a staking service "homeworld" such as Lido, Rocket Pool ect. </li>
-                <li>You Ship spawns on your home planet, but can visit other planets. But your Eth remains in staking in your original service.</li>
+                <li>Your Ship spawns on your home planet, but can visit other planets. But your Eth remains in staking in your original service.</li>
                 <li>As your staked Eth generates rewards, they are wrapped into Ammo Tokens.</li>
                 <li>Your stake is never at risk</li>
                 <li>These Ammo tokens can be used for gameplay, withdrawn, or unwrapped back to Eth.</li>
