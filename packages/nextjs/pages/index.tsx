@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { NextPage } from "next";
 import { MetaHeader } from "~~/components/MetaHeader";
-import { TITLE, API_URL, UTILITY_TOKEN, GOV_TOKEN } from '~~/constants';
+import { TITLE, API_URL, UTILITY_TOKEN, GOV_TOKEN, FARM_TOKEN } from '~~/constants';
 
 const Home: NextPage = () => {
   return (
@@ -18,12 +18,14 @@ const Home: NextPage = () => {
             <span className="block text-title text-6xl font-bold">{TITLE}</span>
           </h1>
           <p className="text-center italic">
-          A Defi Game | Battle For Staked Eth Yield
+          A Mini Game built on the Aerodrome Protocol
           </p>
           <ul className="list-disc mt-10">
-            <li className="mb-2 font-bold">💰 Stake stEth to Mint a spaceship NFT and earn boosted yield up to <span className = "text-purple-500">35%</span> in {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol}</li> 
-            <li className="mb-2 font-bold">🚀 Battle other ships for yield by firing {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol} Tokens entirely on chain</li>
-            <li className="mb-2 font-bold">👾 Destroy Aliens and earn {GOV_TOKEN.emoji}{GOV_TOKEN.title} Gov Tokens to Power Up your ship</li>
+            <li className="mb-2 font-bold">✈️ Stake {FARM_TOKEN.title} LP to Mint a unique Spaceship NFT</li> 
+            <li className="mb-2 font-bold">{UTILITY_TOKEN.emoji} Your Spaceship will convert {FARM_TOKEN.symbol} yield into {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol}</li> 
+            <li className="mb-2 font-bold">👾 Destroy Aliens wih {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol} to earn {FARM_TOKEN.symbol} + {GOV_TOKEN.emoji}{GOV_TOKEN.symbol} rewards</li>
+            <li className="mb-2 font-bold">🔥 Burn {GOV_TOKEN.emoji}{GOV_TOKEN.symbol} to Power up your Spaceship</li>
+            <li className="mb-2 font-bold">🚀 Steal {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol} from less Powerful Spaceships</li>
           </ul>
         </div>
         <div className="flex flex-col  mt-10 text-center rounded-3xl">
@@ -37,13 +39,19 @@ const Home: NextPage = () => {
           </Link>
           <Link href="https://twitter.com/EthRoyce" passHref className="mt-5 text-link" target="_blank">
             <h2 className="text-2xl text-center italic ">
+              Under Construction
               <p className="animate-pulse">
                 Follow @EthRoyce for Updates ↗</p>️
             </h2>
           </Link>
         </div>
-        <div className="mt-5 max-w-[800px] px-8 w-full">
+        <div className="mt-5 collapse collapse-arrow hidden max-w-[800px] px-8 w-full">
+          <input type="checkbox" /> 
+          <div className="collapse-title text-xl font-medium">
             <h2 className="text-title text-3xl mb-4 text-center font-bold">Rules of the Galaxy</h2>
+          </div>
+          <div className="collapse-content"> 
+          TEST
             <h3 className="text-xl font-bold mb-2 text-title">💰STAKING</h3>
             <ul className="list-disc mb-4">
                 <li>Mint a Space Ship by staking Eth in a staking service "homeworld" such as Lido, Rocket Pool ect. </li>
@@ -75,7 +83,7 @@ const Home: NextPage = () => {
                 <li>Each Ammo represents 1/(1 x 10^7) Eth, making the shot size easier to comprehend vs 0.0000001 Eth  </li>
                 <li>Ammo can be withdrawn and traded or transferred.</li>
                 <li>Ammo tokens that are shot at aliens in the game are burned and their underlying Eth will be added to protocol owned Treasury.
-                   This liquidity will be put to use earning yield either by staking 
+                  This liquidity will be put to use earning yield either by staking 
                   in a LP pool or staking in a validator service such as Rocket Pool.
                 </li>
             </ul>
@@ -99,7 +107,7 @@ const Home: NextPage = () => {
                 <li>The treasury funds will be used for activities like funding audits, marketing, rewarding community ect.</li>
             </ul>
             <h3 className="text-xl font-bold mb-2 text-title">SHIP NFT</h3>
-        <img className="text-center self-center items-center" src="/assets/ship3.png" alt="Ship" />
+            <img className="text-center self-center items-center" src="/assets/ship3.png" alt="Ship" />
             <ul className="list-disc mb-2">
                 <li>Your ship NFT utilizes a new type of smart contract standard (EIP-6551) aka <Link href="https://tokenbound.org/" className="text-link">Token Bound NFTs </Link>  
                 that allows the NFT itself to act as a smart wallet and OWN other tokens.</li>
@@ -119,6 +127,7 @@ const Home: NextPage = () => {
                 <li>If you buy a ship on a public market beware that the tokens held in the ship may be withdrawn right before the transfer is complete. 
                   The Exp points will remain associated to the ship. Markets are currently working on a solution to this new issue introduced by the new Token Bound account contracts.</li>
             </ul>
+          </div>
         </div>
       </div>
     </>

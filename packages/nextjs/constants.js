@@ -10,4 +10,8 @@ export const GOV_TOKEN = {
   symbol: 'GLX',
   emoji: '👾'
 };
-
+export const FARM_TOKEN = {
+  title: 'Aerodrome',
+  symbol: 'AERO',
+  emoji: '👾'
+};

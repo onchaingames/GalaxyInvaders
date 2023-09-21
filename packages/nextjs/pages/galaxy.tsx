@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from 'react';
 import { MetaHeader } from "~~/components/MetaHeader";
-import PlanetGrid, { planets } from '~~/components/universe/Planets';
+import PlanetGrid from '~~/components/universe/Planets';
 import PlanetSurface from '~~/components/universe/PlanetSurface';
 import ShipStats from '~~/components/universe/ShipStats';
 import TargetingSystem from '~~/components/universe/TargetingSystem';
@@ -12,14 +12,14 @@ import { Mint } from "~~/components/example-ui/Mint";
 const galaxy: NextPage = () => {
 
   const planetsData = [
-    { name: 'Lido', color: 'red', apr: '15%' },
-    { name: 'Coinbase', color: 'yellow', apr: '23%' },
+    { name: 'Mars', color: 'red', apr: '15%' },
+    { name: 'Jupiter', color: 'yellow', apr: '23%' },
     //{ name: homeworlds[2], color: 'blue', apr: '35%' },
   ];
 
   const [planets, setPlanets] = useState(planetsData);
   const [selectedPlanetIndex, setSelectedPlanetIndex] = useState(0);
-  const [selectedTargetIndex, setSelectedTargetIndex] = useState(0);
+  const [selectedTargetIndex, setSelectedTargetIndex] = useState(null);
 
   return (
     <div className="" style={{
@@ -35,16 +35,19 @@ const galaxy: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </MetaHeader>
       {/**<ContractInteraction />**/}
-      <ContractData />
 
       <div className="planets mt-2 mb-4 ">
-        <div className="planetTitle mb-4 text-center text-white text-2xl">
-          <h2 className="text-title">Planet {planets[selectedPlanetIndex].name}</h2>
+        <div className="planetTitle mb-4 text-center">
+         <span className="text-4xl font-bold text-title ">Planet {planets[selectedPlanetIndex].name}</span>
+          <p className="italic">Select A Target to Attack</p>
         </div>
         <div className="tri-container flex items-stretch gap-10 w-full overflow-x-auto">
           <div className="flex flex-1 justify-end">
-            <div className="bg-gray-800 rounded shipStats flex-shrink-0 min-w-[275px]">
-              <ShipStats />
+            <div className="bg-gray-800 rounded hidden shipStats flex-shrink-0 min-w-[275px]">
+              <ShipStats 
+              planetsData = {planetsData} 
+              selectedPlanetIndex={selectedPlanetIndex} 
+              />
             </div>
           </div>
           <div className="min-w-[512px] min-h-[512px] planetSurface flex-1 flex justify-center">
@@ -56,7 +59,7 @@ const galaxy: NextPage = () => {
             />
           </div>
           <div className="flex flex-1 justify-start">
-            <div className="bg-gray-800 rounded targeting-system flex-shrink-0 min-w-[275px]">
+            <div className="  rounded targeting-system flex-shrink-0 min-w-[275px]">
               {selectedTargetIndex && <TargetingSystem 
                 planets={planets} 
                 selectedPlanetIndex={selectedPlanetIndex} 
@@ -66,11 +69,11 @@ const galaxy: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center mt-4">
-        <img src="/assets/ship3.png" alt="Ship" />
+      <div className="flex flex-col items-center mt-2">
+          <p className="italic">Select Which Ship to Use</p>
       </div>
 
-      <div className="flex mt-4 w-full overflow-x-auto ">
+      <div className="flex mt-2 w-full overflow-x-auto ">
           <div className="flex bg-gray-800 rounded mx-auto">
             <PlanetGrid 
               planets={planets} 

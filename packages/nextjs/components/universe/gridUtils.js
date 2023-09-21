@@ -1,12 +1,12 @@
 // gridUtils.js
 
-const homeworlds = ['Lido', 'Rocket', 'Frax'];
+const homeworlds = ['Mars', 'Jupiter'];
 
 export const generateGrid = () => {
   const grid = [];
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < 8; i++) {
     const row = [];
-    for (let j = 0; j < 16; j++) {
+    for (let j = 0; j < 8; j++) {
       const rand = Math.random();
       if (rand < 0.3) {
         row.push({

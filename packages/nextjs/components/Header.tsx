@@ -45,7 +45,7 @@ export const Header = () => {
         </NavLink>
         <NavLink href="/spaceshipLab">
           <RocketLaunchIcon className="h-4 w-4" />
-          Spaceship Lab
+          Hangar
         </NavLink>
       </li>
     </>

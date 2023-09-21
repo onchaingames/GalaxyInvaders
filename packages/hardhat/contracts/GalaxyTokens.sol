@@ -89,7 +89,9 @@ contract GalaxyTokens is ERC1155, Ownable {
         // Example: Generate a simple SVG image based on tokenId
         string memory svg = string(abi.encodePacked(
         '<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">',
+        '<g transform="translate(0,16) scale(1,-1)">',
             renderTokenById(id),
+        '</g>',
         '</svg>'
         ));
         return svg;

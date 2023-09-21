@@ -13,11 +13,11 @@ function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) 
   const adjustedOdds = (myExperience + 1) / (myExperience + targetExperience + 2) * 100;
 
   return (
-    <div className="bg-gray-800 rounded p-2 relative">
-      <div className="bg-gray-800 rounded p-2">
+    <div className="rounded p-2 relative h-full bg-gray-800">
+      <div className="rounded p-2">
         <h1 className="text-white text-center text-2xl">Targeting System</h1>
         <div className="px-1 mb-1">
-          <table className="bg-gray-800 rounded p-2 table-auto space-x-4">
+          <table className="rounded p-2 table-auto space-x-4">
             <tbody>
               {isAlien && (
                 <>
@@ -34,7 +34,7 @@ function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) 
                   </tr>
                   <tr>
                     <td className="mx-4">
-                      <span className="tooltip tooltip-info" data-tip="Amount of Galaxy Tokens you can win">👾 GALX</span>
+                      <span className="tooltip tooltip-info" data-tip="Amount of Galaxy Tokens you can win">👾 GALX Bounty</span>
                     </td>
                     <td className="text-white mx-4 p-2">{target.victoryPoints}</td>
                   </tr>
@@ -43,12 +43,6 @@ function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) 
                       <span className="tooltip tooltip-info" data-tip="Amount of time (in blocks) left before this target expires">Lifecycle</span>
                     </td>
                     <td className="text-white mx-4 p-2">{target.age}/10</td>
-                  </tr>
-                  <tr>
-                    <td className="mx-4">
-                      <span className="tooltip tooltip-info" data-tip="Amount of Exp you will gain for a Win. Depends on Ammo Req">Exp Gain</span>
-                    </td>
-                    <td className="text-white mx-4 p-2">{target.ammoCost}</td>
                   </tr>
                 </>
               )}
@@ -90,6 +84,7 @@ function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) 
         </div>
         {(isAlien || isShip) && (
           <div className="flex justify-between items-end w-full mb-4">
+          {(isShip) && (
             <div className="border rounded flex justify-between items-end w-full">
               <div className="ml-2">
                 <label htmlFor="attackAmount" className="text-gray-500 font-bold text-xs block">{UTILITY_TOKEN.emoji}Ammo</label>
@@ -98,6 +93,7 @@ function TargetingSystem({ planets, selectedPlanetIndex, selectedTargetIndex }) 
               </div>
               <div className="text-gray-500 mb-1 mx-1 font-bold text-xs block">max</div>
             </div>
+            )}
             <button
               className="ml-2 text-white font-bold py-2 px-2 w-16 h-16 rounded-full flex items-center justify-center 
               transition duration-150 ease-in-out transform active:scale-95 drop-shadow-2xl flex-shrink-0
