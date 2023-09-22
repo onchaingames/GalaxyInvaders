@@ -18,30 +18,28 @@ const Home: NextPage = () => {
             <span className="block text-title text-6xl font-bold">{TITLE}</span>
           </h1>
           <p className="text-center italic">
-          A Mini Game built on the Aerodrome Protocol
+          Compete for yield and gov tokens
           </p>
           <ul className="list-disc mt-10">
-            <li className="mb-2 font-bold">✈️ Stake {FARM_TOKEN.title} LP to Mint a unique Spaceship NFT</li> 
-            <li className="mb-2 font-bold">{UTILITY_TOKEN.emoji} Your Spaceship will convert {FARM_TOKEN.symbol} yield into {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol}</li> 
+            <li className="mb-2 font-bold">✈️ Stake LP to Mint a unique Spaceship NFT</li> 
+            <li className="mb-2 font-bold">{UTILITY_TOKEN.emoji} Your Spaceship will convert yield into {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol}</li> 
             <li className="mb-2 font-bold">👾 Destroy Aliens wih {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol} to earn {FARM_TOKEN.symbol} + {GOV_TOKEN.emoji}{GOV_TOKEN.symbol} rewards</li>
             <li className="mb-2 font-bold">🔥 Burn {GOV_TOKEN.emoji}{GOV_TOKEN.symbol} to Power up your Spaceship</li>
             <li className="mb-2 font-bold">🚀 Steal {UTILITY_TOKEN.emoji}{UTILITY_TOKEN.symbol} from less Powerful Spaceships</li>
           </ul>
         </div>
         <div className="flex flex-col  mt-10 text-center rounded-3xl">
-          <Link href="/galaxy" passHref className="text-purple-500 mb-10 ">
-            <h2 className="text-3xl text-center font-bold ">
-              Preview the Galaxy
-            </h2>
-          </Link>
-          <Link href="/galaxy" passHref className="text-purple-500 animate-bounce">
-            <span className="text-6xl font-bold "> 👾 </span> {/* Added animate-bounce for animation */}
-          </Link>
           <Link href="https://twitter.com/EthRoyce" passHref className="mt-5 text-link" target="_blank">
             <h2 className="text-2xl text-center italic ">
               Under Construction
               <p className="animate-pulse">
                 Follow @EthRoyce for Updates ↗</p>️
+            </h2>
+          </Link>
+          <Link href="/galaxy" passHref className="text-purple-500 mb-10 ">
+            <div className="text-6xl font-bold animate-bounce"> 👾 </div> {/* Added animate-bounce for animation */}
+            <h2 className="text-3xl text-center font-bold ">
+              Preview the Galaxy
             </h2>
           </Link>
         </div>

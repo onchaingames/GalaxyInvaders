@@ -111,11 +111,16 @@ module.exports = {
           "0%, 100%": { transform: "scale(1, 1)" },
           "50%": { transform: "scale(1.1, 1.1)" },
         },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(3deg) translateY(5px)' },
+          '50%': { transform: 'rotate(-3deg) translateY(-5px)' },
+        },
       },
       animation: {
         grow: "grow 5s linear infinite",
         "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         zoom: "zoom 1s ease infinite",
+        wiggle: 'wiggle 5s ease-in-out infinite',
       },
     },
   },
