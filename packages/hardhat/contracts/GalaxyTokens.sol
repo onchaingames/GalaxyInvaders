@@ -28,6 +28,8 @@ contract GalaxyTokens is ERC1155, Ownable {
     uint256 public constant AMMO = 0;
     uint256 public constant GALX = 1;
     uint256 public constant SPACESHIP = 2;
+        // Mapping from token ID to owner address
+    mapping(uint256 => address) private _owners;
 
     constructor(address ownerX) ERC1155("") {
         _mint(msg.sender, AMMO, type(uint256).max, "");
@@ -72,6 +74,39 @@ contract GalaxyTokens is ERC1155, Ownable {
 
         _mintBatch(msg.sender, ids, amounts, "");
     }
+
+    function ownerOf(uint256 tokenId) public view returns (address) {
+        address owner = _owners[tokenId];
+        require(owner != address(0), "Token not owned or burned");
+        return owner;
+    }
+
+    // Overriding the _mint function to update the owner mapping
+    function _mint(address account, uint256 id, uint256 amount, bytes memory data) internal override {
+        super._mint(account, id, amount, data);
+        if(amount == 1) { // Assuming that an amount of 1 means it's an NFT. Adjust logic as needed.
+            _owners[id] = account;
+        }
+    }
+
+    // Overriding the _burn function to update the owner mapping
+    function _burn(address account, uint256 id, uint256 amount) internal override {
+        super._burn(account, id, amount);
+        if(amount == 1) { // Assuming that an amount of 1 means it's an NFT. Adjust logic as needed.
+            _owners[id] = address(0); // Resetting owner to zero address to indicate token has been burned
+        }
+    }
+
+    // Overriding the _transfer function to update the owner mapping
+    function _beforeTokenTransfer(address operator, address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data) internal override {
+        super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
+        for(uint256 i = 0; i < ids.length; i++) {
+            if(amounts[i] == 1) { // Assuming that an amount of 1 means it's an NFT. Adjust logic as needed.
+                _owners[ids[i]] = to;
+            }
+        }
+    }
+
 
     function generateSVGofTokenById(uint256 id) internal view returns (string memory) {
 
